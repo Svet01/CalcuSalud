@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@600&display=swap');
+
+:root {
+    --main-amarillo: #EEE8AA;
+    --main-morado: #463290;
+    --main-rosado: #DC4B7B;
+}
+
+body {
+    margin: auto;
+}
+
+body::before {
+    margin: auto;
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    background: linear-gradient(45deg, rgba(70, 50, 144, 1), rgba(220, 75, 123, 1));
+}
+
+#card-select {
+    margin: 20px !important;
+    background-color: rgb(240, 240, 240) !important;
+    width: 280px !important;
+    line-height: auto !important;
+    border-radius: 10px !important;
+    transition: all 0.25s !important;
+}
+
+.imagen-card {
+    border-radius: 10px 10px 0px 0px !important;
+}
+
+.boton-a {
+    color: black !important;
+    text-decoration: none !important;
+}
+
+#card-select:hover {
+    transform: translateY(-17px) !important;
+    box-shadow: 0 15px 12px #0000003f !important;
+}
+
+.card-body {
+    font-family: 'Noto Sans', sans-serif;
+}
+
+.card-title {
+    font-family: 'Rubik', sans-serif;
+    text-align: start;
+}
+
+.card-footer {
+    background-color: rgb(240,240,240);
+    border-top: none;
+    padding-left: 0px;
+}

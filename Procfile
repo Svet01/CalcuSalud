@@ -1,0 +1,1 @@
+web: gunicorn CalcuSalud.wsgi --log-file -
