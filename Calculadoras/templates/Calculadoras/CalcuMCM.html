@@ -1,18 +1,80 @@
-{% extends 'Calculadoras/partials/CalcuBases.html' %}
+{% extends 'Calculadoras/CalcuBases.html' %}
 
 {% load static %}
 
-{% block title %} CalcuTMB {% endblock %}
+{% block title %} CalcuMCM {% endblock %}
 
 {% block imagen %}
     <img src="{% static 'Calculadoras/imagenes/MCM.jpg'%}" class="card-img-top" alt="...">
 {% endblock %}
 
 {% block body %}
-    {% lorem 1 b random %}
+    <p><strong>¿Qué es el MCM?</strong><br>El MCM o la Masa Corporal Magra está conformada por los órganos internos, además del conjunto de tejidos musculares y óseos, como los dientes y huesos.
+        Es importante conocer nuestra masa magra para orientar nuestra rutina de ejercicios y dieta, sobre cuánta masa grasa debemos perder. De esta manera, es posible conseguir una efectiva perdida de grasa corporal, sin el riesgo de perder masa muscular. <a href="#info">¿Quieres saber mas?</a></p>
 {% endblock %}
 
 {% block form %}
-    <label class="sexo-label" for="mujer"><input id="mujer" type="radio" checked value="M" name="sexo"/>Mujer</label>
-    <label class="sexo-label" for="hombre"><input id="hombre" type="radio" value="H" name="sexo"/>Hombre</label>
+    <h4 class="text-align">Calculadora de Masa Corporal Magra</h4>
+    <p>Ingrese los siguientes datos:</p>
+    <form action="{% url 'CalcuMCM' %}" method="POST"> {% csrf_token %}
+        <div class="form-check mb-3">
+            <label class="form-check-label me-5" for="mujer">Mujer<input class="form-check-input" type="radio" name="sexo" value="M" id="mujer" checked></label>
+            <label class="form-check-label" for="hombre">Hombre<input class="form-check-input" type="radio" name="sexo" value="H" id="hombre"></label>
+        </div>
+        <div class="input-group mb-3">
+            <label class="input-group-text" id="basic-addon1" for="peso">Peso: </label>
+            <input id="peso" type="text" class="form-control" placeholder="70" aria-label="70" aria-describedby="basic-addon1" maxlength="3" name="peso" required/>
+        </div>
+        <div class="input-group mb-3">
+            <label class="input-group-text" id="basic-addon1" for="altura">Altura: </label>
+            <input id="altura" type="text" class="form-control" placeholder="170" aria-label="170" aria-describedby="basic-addon1" maxlength="3" name="altura" required/>
+        </div>
+        <div class="d-grid gap-2">
+            <input class="btn btn-light"  type="submit" value="Resultado"/>
+        </div>
+    </form>
+    <div class="pt-3">
+        {% if sexo == "H" %}        
+        <h5>Hombre - Resultado:</h5>
+        <p>Tu Masa Corporal Magra es {{ MCM_H|floatformat }} Kg <br> Tu Masa Grasa Corporal es: {{ MGC_H|floatformat }} Kg</p> 
+        {% elif sexo == "M" %}
+        <h5>Mujer - Resultado:</h5>
+        <p>Tu Masa Corporal Magra es {{ MCM_M|floatformat }} Kg<br> Tu Masa Grasa Corporal es: {{ MGC_M|floatformat }} Kg</p>
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block info %}
+        <article class="row">
+            <h4>¿Que es la Masa Grasa?</h4>
+            <p>La masa grasa es el conjunto de lípidos o grasas integrales presentes en el organismo. Están conformadas por dos tipos: las de depósito y las primarias. <br>Las primeras están diseminadas subcutáneamente, es decir, debajo de la piel y de forma visceral en los órganos.
+                Constituyen un reservorio energético primordial para el ideal funcionamiento del organismo. No obstante, su exceso puede llegar a generar desordenes metabólicos importantes.<br>Pero tampoco se recomienda que sus niveles sean bajos.
+                Las grasas primarias son de vital importancia para el equilibrio general de nuestro organismo. Estas se encuentran en la medula ósea, dentro del sistema nervioso central y están diseminadas por los diferentes órganos, entre ellos los riñones.
+                Los porcentajes de ambas masas que componen nuestro organismo, conocidas como grasas de depósito y grasas primarias, se ubican entre un 15% a un 17% en el género masculino y en un 24% en el género femenino.
+                Haciendo la salvedad de que, generalmente, estos porcentajes tienden a ser más bajos en las personas deportistas, sin embargo, para asegurar un óptimo estado de salud, no se recomienda que sean inferiores al 4% para el sexo masculino y al 12% para el sexo femenino.</p>
+        </article>
+        <article id="info" class="row">
+            <h4>¿Cual es la formula para Calcular la Masa Grasa Corporal?</h4>
+            <p>Existen algunos métodos para realizar el cálculo de la masa grasa corporal, estos ayudan a determinar el nivel ideal de ella. Uno de los más usados es el aquel que considera la circunferencia del cuello , la estatura, la cintura y el ancho de la cadera. <a class="text-light" href="{% url 'CalcuPGCM' %}">¡Click aqui para Calcular con esta formula!</a>
+                <br>Con diversas fórmulas, se puede realizar este cálculo de acuerdo al sexo.<br>
+                
+                <strong>La Fórmula para calcular la Masa Grasa en los hombres es: 495% 0,15456 (altura) – 450 + (1.0324 – 0.19077) {longitud (cintura-cuello)}.</strong><br>
+                <strong>La Fórmula para calcular la Masa Grasa en las mujeres es: 495% 0.22100 (altura) – 450 + (1.2979 – 0.35004) {longitud (cintura + caderas-cuello)}.</strong></p>
+        </article>
+        <article class="row">
+            <h4>formula para Calcular la Masa Corporal Magra</h4>
+            <p>Este cálculo permite el uso de diversas formas para hacerlo, bien sea usando algunas herramientas específicas o con el desarrollo de fórmulas matemáticas, entre ellas, la más conocida es la fórmula de James.<br>
+                <strong>Fórmula para el cálculo de la masa corporal magra Kg masculino = (1.10 x peso (Kg) – 128 x (peso (Kg)2 (al cuadrado) / Altura (cm)2 (al cuadrado).</strong>
+                <strong>Fórmula para el cálculo de la masa corporal magra Kg femenino = (1.07 x peso (kg) – 148 x (peso (Kg)2 (al cuadrado) / Altura (cm)2 (al cuadrado).</strong><br>
+                Es importante señalar que no se requiere la medición de la cintura o circunferencia de las caderas, basta con saber la altura y el peso. Esto marca la diferencia con la masa grasa corporal.
+            </p>
+        </article>
+        <article>
+            <h4>¿Cómo aumentar la masa muscular y bajar la grasa?</h4>
+            <p>Logrando determinar los valores de la masa magra y la masa grasa corporal, podrás evidenciar la constitución integral de tu cuerpo, esto te permitirá saber qué necesitas para alcanzar un peso ideal y encontrarte saludable.
+                De esta manera, podemos llegar a saber si requerimos el aumento de la masa corporal magra a través de la “EJERCITACIÓN MUSCULAR” o si, por el contrario, necesitamos disminuir la masa grasa corporal, siguiendo una dieta para bajar de peso acompañada de ejercicios específicos.
+                Sin embargo, cualquier plan que decidamos practicar, es recomendable consultar algún profesional en la materia que nos personalice una acción, y que, a su vez, realice un periódico seguimiento de nuestro avance.
+                ¿Deseas tener un equilibrio en tu masa magra y grasa? No debes ignorar tu valor de índices de masas corporales y establecer la mejor rutina de ejercicios y composición de una alimentación acorde a lo que necesitas.</p>
+        </article>
+    </div>     
 {% endblock %}

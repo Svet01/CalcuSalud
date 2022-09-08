@@ -1,0 +1,55 @@
+{% extends 'Calculadoras/CalcuBases.html' %}
+
+{% load static %}
+
+{% block title %} CalcuPGC {% endblock %}
+
+{% block imagen %}
+    <img src="{% static 'Calculadoras/imagenes/PGC.jpg'%}" class="card-img-top" alt="...">
+{% endblock %}
+
+{% block body %}
+    <p><strong>¿Qué es el PGC?</strong><br>Se trata de una medida indicativa de sobrepeso, o infrapeso, que nos ayuda a distinguir la masa muscular de la materia grasa que está presente en nuestra composición corporal.
+        El peso que vemos en la báscula no lo es todo y en el caso de los deportistas, índices como el <a href="{% url 'CalcuIMC' %}" class="text-muted">IMC (Índice de Masa Corporal)</a> no resultan suficiente para medir la masa muscular real.
+        El porcentaje de grasa corporal depende de la edad, el sexo, el peso y el estilo de vida. Así, podemos establecer los rangos que se muestra a continuación. <a href="#info">¿Quieres saber mas?</a></p>
+{% endblock %}
+
+{% block form %}
+    <h4 class="text-align">Calculadora de Porcentaje de Grasa Corporal</h4>
+    <p>Ingrese los siguientes datos:</p>
+    <a href="{% url 'CalcuPGCM' %}" class="btn btn-outline-secondary">Mujer</a> 
+    <a href="{% url 'CalcuPGCH' %}" class="btn btn-outline-secondary">Hombre</a>
+    <form class="mt-2" action="{% url 'CalcuPGCM' %}" method="POST"> {% csrf_token %}
+        <div class="input-group mb-2">
+            <label class="input-group-text" id="basic-addon1" for="edad">Edad: </label>
+            <input  id="edad" type="text" class="form-control" placeholder="18 años" aria-label="18" aria-describedby="basic-addon1" maxlength="3" name="edad" required/>
+        </div>
+        <div class="input-group mb-2">
+            <label class="input-group-text" id="basic-addon1" for="altura">Altura: </label>
+            <input id="altura" type="text" class="form-control" placeholder="170 cm" aria-label="170" aria-describedby="basic-addon1" maxlength="3" name="altura" required/>
+        </div>
+        <div class="input-group mb-2">
+            <label class="input-group-text" id="basic-addon1" for="peso">Peso: </label>
+            <input id="peso" type="text" class="form-control" placeholder="70 Kg" aria-label="70" aria-describedby="basic-addon1" maxlength="3" name="peso" required/>
+        </div>
+        <div class="input-group mb-2">
+            <label class="input-group-text" id="basic-addon1" for="peso">Cuello: </label>
+            <input id="peso" type="text" class="form-control" placeholder="45 cm" aria-label="70" aria-describedby="basic-addon1" maxlength="3" name="peso" required/>
+        </div>
+        <div class="input-group mb-2">
+            <label class="input-group-text" id="basic-addon1" for="peso">Cadera: </label>
+            <input id="peso" type="text" class="form-control" placeholder="120 cm (Solo mujeres) " aria-label="70" aria-describedby="basic-addon1" maxlength="3" name="peso" required/>
+        </div>
+        <div class="input-group mb-2">
+            <label class="input-group-text" id="basic-addon1" for="peso">Cintura: </label>
+            <input id="peso" type="text" class="form-control" placeholder="140 cm" aria-label="70" aria-describedby="basic-addon1" maxlength="3" name="peso" required/>
+        </div>
+        <div class="d-grid gap-2">
+            <input class="btn btn-light"  type="submit" value="Resultado"/>
+        </div>
+    </form>
+    {% if request.method == "POST"%}
+        <h5>Resultado:</h5>
+        <p>Tu PGC es: {{ PGC_M|floatformat }}%</p>
+    {% endif %}
+{% endblock %}

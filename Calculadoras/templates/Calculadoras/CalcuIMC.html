@@ -9,11 +9,11 @@
 {% endblock %}
 
 {% block body %}
-    <p><strong>¿Qué es el IMC?</strong><br> El IMC o Índice de Masa Corporal es la medición que valora tu peso en relación con tu altura. Puede usarse a cualquier edad y se puede calcular el IMC de mujeres, hombres y niños. El cálculo del IMC clasifica a los individuos en bajo peso, peso normal o sobrepeso, por lo que gracias a él se puede determinar si una persona tiene un peso inapropiado o poco <a href="#info">¿Quieres saber mas?</a></p>
+    <p><strong>¿Qué es el IMC?</strong><br> El IMC o <strong>Índice de Masa Corporal</strong> es la medición que valora tu peso en relación con tu altura. Puede usarse a cualquier edad y se puede calcular el IMC de mujeres, hombres y niños. El cálculo del IMC clasifica a los individuos en bajo peso, peso normal o sobrepeso, por lo que gracias a él se puede determinar si una persona tiene un peso inapropiado o saludable. <a href="#info">¿Quieres saber mas?</a></p>
 {% endblock %}
 
 {% block form %}
-    <h4 class="text-align">Calculadora de Tasa Metabolica Basal</h4>
+    <h4 class="text-align">Calculadora de IMC</h4>
     <p>Ingrese los siguientes datos:</p>
     <form action="{% url 'CalcuIMC' %}" method="POST"> {% csrf_token %}
         <div class="form-check mb-3">
@@ -37,19 +37,24 @@
         </div>
     </form>
     <div class="pt-2">
-        <h5>Resultado</h5>
         {% if IMC >= 40 %}
-            <p>Tu IMC es: {{ IMC|floatformat }} Tu Situación es: Obesidad Extrema</p>
+            <h5>Resultado</h5>
+            <p>Tu IMC es: {{ IMC|floatformat }} kg/m2 <br>Tu Situación es: Obesidad Extrema</p>
         {% elif IMC >= 39 %}
-            <p>Tu IMC es: {{ IMC|floatformat }} Tu Situación es: Obesidad Tipo II</p>    
+            <h5>Resultado</h5>
+            <p>Tu IMC es: {{ IMC|floatformat }} kg/m2 <br>Tu Situación es: Obesidad Tipo II</p>    
         {% elif IMC >= 30 %}
-            <p>Tu IMC es: {{ IMC|floatformat }} Tu Situación es: Obesidad</p>
+            <h5>Resultado</h5>
+            <p>Tu IMC es: {{ IMC|floatformat }} kg/m2 <br>Tu Situación es: Obesidad</p>
         {% elif IMC >= 25 %}
-            <p>Tu IMC es: {{ IMC|floatformat }} Tu Situación es: Sobrepeso</p>
+            <h5>Resultado</h5>
+            <p>Tu IMC es: {{ IMC|floatformat }} kg/m2 <br>Tu Situación es: Sobrepeso</p>
         {% elif IMC >= 18 %}
-            <p>Tu IMC es: {{ IMC|floatformat }} Tu Situación es: Peso Normal</p>
+            <h5>Resultado</h5>
+            <p>Tu IMC es: {{ IMC|floatformat }} kg/m2 <br>Tu Situación es: Peso Normal</p>
         {% elif IMC <= 18 %}
-            <p>Tu IMC es: {{ IMC|floatformat }} Tu Situación es: Bajo Peso</p>
+            <h5>Resultado</h5>
+            <p>Tu IMC es: {{ IMC|floatformat }} kg/m2 <br>Tu Situación es: Bajo Peso</p>
         {% endif %}    
     </div>
 {% endblock %}
@@ -103,7 +108,7 @@
                 </p>
             </div>
         </article>
-        <article class="row">
+        <article id="info" class="row">
             <h4>¿Cual es la formula para Calcular el IMC?</h4>
             <p>la fórmula para el IMC es el <strong>peso en kilogramos dividido por la estatura en metros cuadrados.</strong> Debido a que la estatura por lo general se mide en centímetros, divida la estatura en centímetros por 100 para obtener la estatura en metros.<br>Ejemplo: Peso = 68 kg, Estatura = 165 cm (1.65 m)
                 <br>Cálculo: 68 ÷ (1.65)*2 = 24.98</p>
