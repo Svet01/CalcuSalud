@@ -39,12 +39,14 @@
           </button>
         </div>
       </nav>
-    <div class="text-center rounded-3">
+
+    <header class="text-center rounded-3">
       <div class="container-fluid py-2">
         <h1 class="text-light display-5 fw-bold">CalcuSalud</h1>
       </div>
-    </div>
-    <div id="calcuCard" class="card" style="max-width: 800px;">
+    </header>
+
+    <section id="calcuCard" class="card" style="max-width: 800px;">
         <div class="row g-0">
             <div class="col-sm-12 col-lg-5 asideInfo">
                 <div class="asideImg">
@@ -60,13 +62,15 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="container">
+      </section>
+
+    <section class="infoCard container mt-2">
         <div class="text-light">
           {% block info %}{% endblock %}
         </div>
       </div>
-    </div>
+    </section>
+
     <footer class="mt-5 d-flex justify-content-around">
       <div class="text-light">
         <p>Vectores creados por <a href='https://www.freepik.es/autor/vectorjuice' class="text-decoration-none">Vectorjuice</a> - www.freepik.es</p>
@@ -76,6 +80,7 @@
           <li class="list-inline-item"><a class="text-light" href="https://www.instagram.com/sebavilte02/"><i class='bx bxl-instagram bx-md'></i></a></li>
       </ul>
   </footer> 
+
 </body>
 
 </html>
