@@ -9,14 +9,15 @@
 {% endblock %}
 
 {% block body %}
-    <p><strong>¿Qué es el IMC?</strong><br> El IMC o Índice de Masa Corporal es la medición que valora tu peso en relación con tu altura. Puede usarse a cualquier edad y se puede calcular el IMC de mujeres, hombres y niños. El cálculo del IMC clasifica a los individuos en bajo peso, peso normal o sobrepeso, por lo que gracias a él se puede determinar si una persona tiene un peso inapropiado o poco.<a href="#">¿Quieres saber mas?</a></p>
+    <p><strong>¿Qué es el IMC?</strong><br> El IMC o Índice de Masa Corporal es la medición que valora tu peso en relación con tu altura. Puede usarse a cualquier edad y se puede calcular el IMC de mujeres, hombres y niños. El cálculo del IMC clasifica a los individuos en bajo peso, peso normal o sobrepeso, por lo que gracias a él se puede determinar si una persona tiene un peso inapropiado o poco <a href="#info">¿Quieres saber mas?</a></p>
 {% endblock %}
 
 {% block form %}
-    <h2 class="text-align">Calculadora de Tasa Metabolica Basal</h2>
-    <form action="{% url 'CalcuTMB' %}" method="POST"> {% csrf_token %}
+    <h4 class="text-align">Calculadora de Tasa Metabolica Basal</h4>
+    <p>Ingrese los siguientes datos:</p>
+    <form action="{% url 'CalcuIMC' %}" method="POST"> {% csrf_token %}
         <div class="form-check mb-3">
-            <label class="form-check-label mt-2 me-5" for="mujer">Mujer<input class="form-check-input" type="radio" name="sexo" value="M" id="mujer" checked></label>
+            <label class="form-check-label me-5" for="mujer">Mujer<input class="form-check-input" type="radio" name="sexo" value="M" id="mujer" checked></label>
             <label class="form-check-label" for="hombre">Hombre<input class="form-check-input" type="radio" name="sexo" value="H" id="hombre"></label>
         </div>
         <div class="input-group mb-3">
@@ -35,9 +36,62 @@
             <input class="btn btn-light"  type="submit" value="Resultado"/>
         </div>
     </form>
+    <div class="pt-2">
+        <h5>Resultado</h5>
+        {% if IMC >= 40 %}
+            <p>Tu IMC es: {{ IMC|floatformat }} Tu Situación es: Obesidad Extrema</p>
+        {% elif IMC >= 39 %}
+            <p>Tu IMC es: {{ IMC|floatformat }} Tu Situación es: Obesidad Tipo II</p>    
+        {% elif IMC >= 30 %}
+            <p>Tu IMC es: {{ IMC|floatformat }} Tu Situación es: Obesidad</p>
+        {% elif IMC >= 25 %}
+            <p>Tu IMC es: {{ IMC|floatformat }} Tu Situación es: Sobrepeso</p>
+        {% elif IMC >= 18 %}
+            <p>Tu IMC es: {{ IMC|floatformat }} Tu Situación es: Peso Normal</p>
+        {% elif IMC <= 18 %}
+            <p>Tu IMC es: {{ IMC|floatformat }} Tu Situación es: Bajo Peso</p>
+        {% endif %}    
+    </div>
 {% endblock %}
 
 {% block info %}
-    <p>Cómo interpretar el IMC</p>
-    
-{% endblock%}
+    <div id="info" class="container">
+        <h4 class="pt-4 text-light">Cómo interpretar el IMC</h4>
+        <div clas="table-responsive-sm">
+            <table class="table table-light table-bordered table-sm border border-5">
+                <thead>
+                <tr>
+                    <th>Situación</th>
+                    <th>IMC</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="table-success">
+                    <td>Bajo Peso</td>
+                    <td>Menor 18,5</td>
+                </tr>
+                <tr class="table-success">
+                    <td>Peso Normal</td>
+                    <td>18,5 - 24,9</td>
+                </tr>
+                <tr class="table-warning">
+                    <td>Sobrepeso</td>
+                    <td>25,0 - 29,9</td>
+                </tr>
+                <tr class="table-danger">
+                    <td>Obesidad I</td>
+                    <td>30,0 - 34,9</td>
+                </tr>
+                <tr class="table-danger">
+                    <td>Obesidad II</td>
+                    <td>35,0 - 39,9</td>
+                </tr>
+                <tr class="table-danger">
+                    <td>Obesidad Extrema</td>
+                    <td>Mayor 40</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div      
+{% endblock %}

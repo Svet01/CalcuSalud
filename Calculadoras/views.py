@@ -34,21 +34,23 @@ def CalcuTMB(request):
 
 
 def CalcuIMC(request):
-    # Get Datos = Recibe los datos del Usuario
-    sexo = str(request.POST["sexo"]) if "sexo" in request.POST else "M"
-    peso = int(request.POST["peso"]) if "peso" in request.POST else 70
-    altura = int(request.POST["altura"]) if "altura" in request.POST else 170
-    estado = bool(request.POST["estado"]) if "estado" in request.POST else "False"
+    if request.method == "POST":
+        # Get Datos = Recibe los datos del Usuario
+        sexo = str(request.POST["sexo"]) if "sexo" in request.POST else "M"
+        peso = int(request.POST["peso"]) if "peso" in request.POST else 70
+        altura = int(request.POST["altura"]) if "altura" in request.POST else 170
+        estado = bool(request.POST["estado"]) if "estado" in request.POST else "False"
 
-    # IMC = Indice de Masa Corporal
-    def calIMC(altura, peso):
-        m = (altura / 100)
-        float(m)
-        IMC = (peso/(m * m))
-        return IMC
-    IMC = calIMC(altura, peso)
-    
-    return render(request, "Calculadoras/CalcuIMC.html", {"IMC": IMC, "sexo": sexo, "estado": estado})
+        # IMC = Indice de Masa Corporal
+        def calIMC(altura, peso):
+            m = (altura / 100)
+            float(m)
+            IMC = (peso/(m * m))
+            return IMC
+        IMC = calIMC(altura, peso)
+        return render(request, "Calculadoras/CalcuIMC.html", {"IMC": IMC, "sexo": sexo, "estado": estado})
+    else:
+        return render(request, "Calculadoras/CalcuIMC.html")
 
 
 def CalcuPGCM(request):
