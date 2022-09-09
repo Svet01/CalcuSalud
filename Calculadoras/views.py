@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from math import log10
+import math
 
 # Create your views here.
 
@@ -65,35 +65,27 @@ def CalcuPGCM(request):
         cadera = int(request.POST["cadera"]) if "cadera" in request.POST else 105
 
         # Convertidor de Centimetros a Metros y los transforma a Float
-        def convertidor(altura, cuello, cintura, cadera):
-            alturaMetros = (altura / 100)
-            float(alturaMetros)
-            caderaMetros = (cadera / 100)
-            float(caderaMetros)                   # Metros = cm / 100
-            cinturaMetros = (cintura / 100)
-            float(cinturaMetros)
-            cuelloMetros = (cuello / 100)
-            float(cuelloMetros)
-            PGC_Mujer = 495 / (1.29579 - 0.35004 * log10(cinturaMetros + caderaMetros - cuelloMetros) + 0.22100 * log10(alturaMetros)) - 450
-            return PGC_Mujer
+        alturaMetros = (altura / 100)
+        float(alturaMetros)
+        caderaMetros = (cadera / 100)
+        float(caderaMetros)                   # Metros = cm / 100
+        cinturaMetros = (cintura / 100)
+        float(cinturaMetros)
+        cuelloMetros = (cuello / 100)
+        float(cuelloMetros)
 
-        def metros(altura):
-            alturaMetros = (altura / 100)
-            float(alturaMetros)
-            PesoIdealMujer = 21.5 * (alturaMetros * alturaMetros)
-            return PesoIdealMujer
         # PGC = Porcentaje de Grasa Corporal 
-        PGC_Mujer = convertidor(altura, cuello, cintura, cadera)
-        # Peso Ideal 
-        PesoIdealMujer = metros(altura)
-        
-        
-        
 
+        PGC_Mujer = 495 / (1.29579 - 0.35004 * math.log10(cinturaMetros + caderaMetros - cuelloMetros) + 0.22100 * math.log10(alturaMetros)) - 450
+
+        # Peso Ideal
+        PesoIdealMujer = 21.5 * (alturaMetros * alturaMetros)
+        
         return render(request, "Calculadoras/CalcuPGCM.html", {"PGC_M": PGC_Mujer, "edad": edad, "PIdealM": PesoIdealMujer})
     
     else:
          return render(request, "Calculadoras/CalcuPGCM.html")
+
 
 def CalCuPGCH(request):
     if request.method == "POST":
@@ -121,6 +113,7 @@ def CalCuPGCH(request):
 
     else:
         return render(request, "Calculadoras/CalcuPGCH.html")
+
 
 def CalcuMCM(request):
     if request.method == "POST":
