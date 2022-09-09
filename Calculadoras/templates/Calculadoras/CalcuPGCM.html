@@ -51,7 +51,7 @@
     <div class="mt-3">
         {% if request.method == "POST"%}
         <h5>Resultado:</h5>
-        <p>Tu Porcentaje de Grasa es: {{ PGC_M|floatformat }}%</p>
+        <p>Tu Porcentaje de Grasa es: {{ PGC_M|floatformat }}%<br>Tu peso ideal es: {{ PIdealM|floatformat }} Kg</p>
         {% endif %}
     </div>
 {% endblock %}

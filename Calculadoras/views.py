@@ -59,26 +59,38 @@ def CalcuPGCM(request):
     if request.method == "POST":
         # Get Datos = Recibe los datos del Usuario
         edad = int(request.POST["edad"]) if "edad" in request.POST else 18
-        altura = int(request.POST["altura"]) if "altura" in request.POST else 170
+        altura = int(request.POST["altura"]) if "altura" in request.POST else 160
         cuello = int(request.POST["cuello"]) if 'cuello' in request.POST else 45
-        estado = bool(request.POST["estado"]) if "estado" in request.POST else False
         cintura = int(request.POST["cintura"]) if "cintura" in request.POST else 120
         cadera = int(request.POST["cadera"]) if "cadera" in request.POST else 105
-        
-        # PGC = Porcentaje de Grasa Corporal | Convertidor de Centimetros a Metros y los transforma a Float
-        def convertidor(altura, cadera, cintura, cuello):
-            altura = (altura / 100)
-            float(altura)
-            cadera = (cadera / 100)
-            float(cadera)                   # Metros = cm / 100
-            cintura = (cintura / 100)
-            float(cintura)
-            cuello = (cuello / 100)
-            float(cuello)
-            return altura, cadera, cintura, cuello
-        PGC_Mujer = 495 / (1.29579 - 0.35004 * log10(cintura + cadera - cuello) + 0.22100 * log10(altura)) - 450
 
-        return render(request, "Calculadoras/CalcuPGCM.html", {"PGC_M": PGC_Mujer, "estado": estado, "edad": edad})
+        # Convertidor de Centimetros a Metros y los transforma a Float
+        def convertidor(altura, cuello, cintura, cadera):
+            alturaMetros = (altura / 100)
+            float(alturaMetros)
+            caderaMetros = (cadera / 100)
+            float(caderaMetros)                   # Metros = cm / 100
+            cinturaMetros = (cintura / 100)
+            float(cinturaMetros)
+            cuelloMetros = (cuello / 100)
+            float(cuelloMetros)
+            PGC_Mujer = 495 / (1.29579 - 0.35004 * log10(cinturaMetros + caderaMetros - cuelloMetros) + 0.22100 * log10(alturaMetros)) - 450
+            return PGC_Mujer
+
+        def metros(altura):
+            alturaMetros = (altura / 100)
+            float(alturaMetros)
+            PesoIdealMujer = 21.5 * (alturaMetros * alturaMetros)
+            return PesoIdealMujer
+        # PGC = Porcentaje de Grasa Corporal 
+        PGC_Mujer = convertidor(altura, cuello, cintura, cadera)
+        # Peso Ideal 
+        PesoIdealMujer = metros(altura)
+        
+        
+        
+
+        return render(request, "Calculadoras/CalcuPGCM.html", {"PGC_M": PGC_Mujer, "edad": edad, "PIdealM": PesoIdealMujer})
     
     else:
          return render(request, "Calculadoras/CalcuPGCM.html")
