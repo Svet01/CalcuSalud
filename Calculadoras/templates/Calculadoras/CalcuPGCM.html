@@ -33,12 +33,12 @@
             <input id="peso" type="text" class="form-control" placeholder="70 Kg" aria-label="70" aria-describedby="basic-addon1" maxlength="3" name="peso" required/>
         </div>
         <div class="input-group mb-2">
-            <label class="input-group-text" id="basic-addon1" for="peso">Cuello: </label>
-            <input id="peso" type="text" class="form-control" placeholder="45 cm" aria-label="70" aria-describedby="basic-addon1" maxlength="3" name="peso" required/>
+            <label class="input-group-text" id="basic-addon1" for="cuello">Cuello: </label>
+            <input id="cuello" type="text" class="form-control" placeholder="45 cm" aria-label="70" aria-describedby="basic-addon1" maxlength="3" name="cuello" required/>
         </div>
         <div class="input-group mb-2">
             <label class="input-group-text" id="basic-addon1" for="peso">Cadera: </label>
-            <input id="peso" type="text" class="form-control" placeholder="120 cm (Solo mujeres) " aria-label="70" aria-describedby="basic-addon1" maxlength="3" name="peso" required/>
+            <input id="peso" type="text" class="form-control" placeholder="120 cm (Solo mujeres) " aria-label="70" aria-describedby="basic-addon1" maxlength="3" name="cuello" required/>
         </div>
         <div class="input-group mb-2">
             <label class="input-group-text" id="basic-addon1" for="peso">Cintura: </label>
@@ -48,8 +48,10 @@
             <input class="btn btn-light"  type="submit" value="Resultado"/>
         </div>
     </form>
-    {% if request.method == "POST"%}
+    <div class="mt-3">
+        {% if request.method == "POST"%}
         <h5>Resultado:</h5>
-        <p>Tu PGC es: {{ PGC_M|floatformat }}%</p>
-    {% endif %}
+        <p>Tu Porcentaje de Grasa es: {{ PGC_M|floatformat }}%</p>
+        {% endif %}
+    </div>
 {% endblock %}
