@@ -65,26 +65,21 @@ def CalcuPGCM(request):
         cadera = int(request.POST["cadera"]) if "cadera" in request.POST else 105
 
         # Convertidor de Centimetros a Metros y los transforma a Float
-        alturaMetros = (altura / 100)
-        float(alturaMetros)
-        caderaMetros = (cadera / 100)
-        float(caderaMetros)                   # Metros = cm / 100
-        cinturaMetros = (cintura / 100)
-        float(cinturaMetros)
-        cuelloMetros = (cuello / 100)
-        float(cuelloMetros)
-
-        # PGC = Porcentaje de Grasa Corporal 
-
-        PGC_Mujer = 495 / (1.29579 - 0.35004 * math.log10(cinturaMetros + caderaMetros - cuelloMetros) + 0.22100 * math.log10(alturaMetros)) - 450
+        def Convertidor(altura):
+            alturaMetros = (altura / 100)
+            float(alturaMetros)
+            PesoIdealMujer = 21.5 * (alturaMetros * alturaMetros)
+            return PesoIdealMujer
 
         # Peso Ideal
-        PesoIdealMujer = 21.5 * (alturaMetros * alturaMetros)
+        PesoIdealMujer = Convertidor(altura)
+        # PGC = Porcentaje de Grasa Corporal 
+        PGC_Mujer = 163.205 * math.log10(cintura + cadera - cuello) - 97.684 * math.log10(altura) - 78.387
         
         return render(request, "Calculadoras/CalcuPGCM.html", {"PGC_M": PGC_Mujer, "edad": edad, "PIdealM": PesoIdealMujer})
     
     else:
-         return render(request, "Calculadoras/CalcuPGCM.html")
+        return render(request, "Calculadoras/CalcuPGCM.html")
 
 
 def CalCuPGCH(request):
