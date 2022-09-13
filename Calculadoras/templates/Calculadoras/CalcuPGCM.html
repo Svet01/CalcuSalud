@@ -49,27 +49,50 @@
         </div>
     </form>
     <div class="mt-3">
-        {% if request.method == "POST"%}
-        <p>Tu Porcentaje de Grasa es: {{ PGC_M|floatformat }} Tu peso ideal es: {{ PIdealM|floatformat }} Kg</p>
-            {% if IMC >= 40  %}
-                <h5>Resultado</h5>
-                <p>Tu IMC es: {{ IMC|floatformat }} kg/m2 <br>Tu Situación es: Obesidad Extrema</p>
-            {% elif IMC >= 39 %}
-                <h5>Resultado</h5>
-                <p>Tu IMC es: {{ IMC|floatformat }} kg/m2 <br>Tu Situación es: Obesidad Tipo II</p>    
-            {% elif IMC >= 30 %}
-                <h5>Resultado</h5>
-                <p>Tu IMC es: {{ IMC|floatformat }} kg/m2 <br>Tu Situación es: Obesidad</p>
-            {% elif IMC >= 25 %}
-                <h5>Resultado</h5>
-                <p>Tu IMC es: {{ IMC|floatformat }} kg/m2 <br>Tu Situación es: Sobrepeso</p>
-            {% elif IMC >= 18 %}
-                <h5>Resultado</h5>
-                <p>Tu IMC es: {{ IMC|floatformat }} kg/m2 <br>Tu Situación es: Peso Normal</p>
-            {% elif IMC <= 18 %}
-                <h5>Resultado</h5>
-                <p>Tu IMC es: {{ IMC|floatformat }} kg/m2 <br>Tu Situación es: Bajo Peso</p>
-            {% endif %}    
+        {% if request.method == "POST" %}
+            {% if edad <= 39 %}
+                {% if PGC_M <= 21 %}
+                    <h5>Resultado</h5>
+                    <p>Tu Porcentaje de Grasa es: {{ PGC_M|floatformat }} Tu peso ideal es: {{ PIdealM|floatformat }} Kg</p>
+                {% elif PGC_M <= 33 %}
+                    <h5>Resultado</h5>
+                    <p>Tu Porcentaje de Grasa es: {{ PGC_M|floatformat }} Tu peso ideal es: {{ PIdealM|floatformat }} Kg</p>
+                {% elif PGC_M <= 39 %}
+                    <h5>Resultado</h5>
+                    <p>Tu Porcentaje de Grasa es: {{ PGC_M|floatformat }} Tu peso ideal es: {{ PIdealM|floatformat }} Kg</p>    
+                {% elif PGC_M >= 39 %}
+                    <h5>Resultado</h5>
+                    <p>Tu Porcentaje de Grasa es: {{ PGC_M|floatformat }} Tu peso ideal es: {{ PIdealM|floatformat }} Kg</p>   
+                {% endif %}
+            {% elif edad <= 59 %}
+                {% if PGC_M <= 23 %}
+                    <h5>Resultado</h5>
+                    <p>Tu Porcentaje de Grasa es: {{ PGC_M|floatformat }} Tu peso ideal es: {{ PIdealM|floatformat }} Kg</p>
+                {% elif PGC_M <= 35 %}
+                    <h5>Resultado</h5>
+                    <p>Tu Porcentaje de Grasa es: {{ PGC_M|floatformat }} Tu peso ideal es: {{ PIdealM|floatformat }} Kg</p>
+                {% elif PGC_M <= 40 %}
+                    <h5>Resultado</h5>
+                    <p>Tu Porcentaje de Grasa es: {{ PGC_M|floatformat }} Tu peso ideal es: {{ PIdealM|floatformat }} Kg</p>
+                {% elif PGC_M >= 40 %}
+                    <h5>Resultado</h5>
+                    <p>Tu Porcentaje de Grasa es: {{ PGC_M|floatformat }} Tu peso ideal es: {{ PIdealM|floatformat }} Kg</p>
+                {% endif %} 
+            {% elif edad <= 79 %}
+                {% if PGC_M <= 24 %}
+                    <h5>Resultado</h5>
+                    <p>Tu Porcentaje de Grasa es: {{ PGC_M|floatformat }} Tu peso ideal es: {{ PIdealM|floatformat }} Kg</p>
+                {% elif PGC_M <= 36 %}
+                    <h5>Resultado</h5>
+                    <p>Tu Porcentaje de Grasa es: {{ PGC_M|floatformat }} Tu peso ideal es: {{ PIdealM|floatformat }} Kg</p>
+                {% elif PGC_M <= 42 %}
+                    <h5>Resultado</h5>
+                    <p>Tu Porcentaje de Grasa es: {{ PGC_M|floatformat }} Tu peso ideal es: {{ PIdealM|floatformat }} Kg</p>
+                {% elif PGC_M >= 42 %}
+                    <h5>Resultado</h5>
+                    <p>Tu Porcentaje de Grasa es: {{ PGC_M|floatformat }} Tu peso ideal es: {{ PIdealM|floatformat }} Kg</p>
+                {% endif %}    
+            {% endif %} 
         {% endif %}
     </div>
 {% endblock %}
@@ -77,9 +100,9 @@
 
 {% block info %}
         <article class="row">
-            <h4 class="text-light">¿Cómo interpretar el IMC?</h4>
+            <h4 class="text-light">¿Cómo interpretar el PGC?</h4>
             <div class="col-sm-12 col-lg-5 table-responsive-sm">
-                <p class="h6 text-light">tabla de la OMS para mujeres y hombres</p>
+                <p class="h6 text-light">Porcentaje de Grasa Corporal (EN MUJERES)</p>
                 <table class="table table-light table-bordered table-sm border border-5">
                     <thead class="text-center">
                     <tr>
