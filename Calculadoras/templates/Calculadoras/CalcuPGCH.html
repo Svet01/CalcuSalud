@@ -22,7 +22,7 @@
     <p>Ingrese los siguientes datos:</p>
     <a href="{% url 'CalcuPGCM' %}" class="btn btn-outline-secondary">Mujer</a> 
     <a href="{% url 'CalcuPGCH' %}" class="btn btn-outline-secondary">Hombre</a>
-    <form class="mt-2" action="{% url 'CalcuPGCM' %}" method="POST"> {% csrf_token %}
+    <form class="mt-2" action="{% url 'CalcuPGCH' %}" method="POST"> {% csrf_token %}
         <div class="input-group mb-2">
             <label class="input-group-text" id="basic-addon1" for="edad">Edad: </label>
             <input  id="edad" type="text" class="form-control" placeholder="18 años" aria-label="70" aria-describedby="basic-addon1" maxlength="3" name="edad" required/>
@@ -40,10 +40,6 @@
             <input id="cuello" type="text" class="form-control" placeholder="45 cm" aria-label="70" aria-describedby="basic-addon1" maxlength="3" name="cuello" required/>
         </div>
         <div class="input-group mb-2">
-            <label class="input-group-text" id="basic-addon1" for="cadera">Cadera: </label>
-            <input id="cadera" type="text" class="form-control" placeholder="120 cm (Solo mujeres)" aria-label="70" aria-describedby="basic-addon1" maxlength="3" name="cadera" required/>
-        </div>
-        <div class="input-group mb-2">
             <label class="input-group-text" id="basic-addon1" for="cintura">Cintura: </label>
             <input id="cintura" type="text" class="form-control" placeholder="140 cm" aria-label="70" aria-describedby="basic-addon1" maxlength="3" name="cintura" required/>
         </div>
@@ -53,89 +49,89 @@
     </form>
     <div class="mt-3">
         {% if request.method == "POST" %}
-            {% if edad < 39%}
-                {% if PGC_M <= 21 %}
+            {% if edad < 39 %}
+                {% if PGC_H <= 8 %}
                     <h5>Resultado</h5>
-                    <p>No tienes la suficiente Grasa en el Cuerpo.<br> Tu Porcentaje de Grasa es: {{ PGC_M|floatformat }}% <br>Consejo: Es esencial tener un PGC mas alto!</p>
-                {% elif PGC_M <= 33 %}
+                    <p>No tienes la suficiente Grasa en el Cuerpo.<br> Tu Porcentaje de Grasa es: {{ PGC_H|floatformat }}% <br>Consejo: Es esencial tener un PGC mas alto!</p>
+                {% elif PGC_H <= 20 %}
                     <h5>Resultado</h5>
-                    <p>Genial! te encuentras Saludable!<br> Tu Porcentaje de Grasa es: {{ PGC_M|floatformat }}% <br>Consejo: Talvez tengas que perder grasa de la barriga</p>
-                {% elif PGC_M <= 39 %}
+                    <p>Genial! te encuentras Saludable!<br> Tu Porcentaje de Grasa es: {{ PGC_H|floatformat }}% <br>Consejo: Talvez tengas que perder grasa de la barriga</p>
+                {% elif PGC_H <= 25 %}
                     <h5>Resultado</h5>
-                    <p>Tienes Sobrepeso<br> Tu Porcentaje de Grasa es: {{ PGC_M|floatformat }}% <br>Consejo: Debes cuidarte tu salud es importante</p>    
-                {% elif PGC_M > 39 %}
+                    <p>Tienes Sobrepeso<br> Tu Porcentaje de Grasa es: {{ PGC_H|floatformat }}% <br>Consejo: Debes cuidarte tu salud es importante</p>    
+                {% elif PGC_H > 25 %}
                     <h5>Resultado</h5>
-                    <p>Tienes Obesidad<br> Tu Porcentaje de Grasa es: {{ PGC_M|floatformat }}% <br>Consejo: Esto es peligroso la Obesidad puede traer muchas enfermedades</p>   
+                    <p>Tienes Obesidad<br> Tu Porcentaje de Grasa es: {{ PGC_H|floatformat }}% <br>Consejo: Esto es peligroso la Obesidad puede traer muchas enfermedades</p>   
                 {% endif %}
-                {% if PIdealM < peso %}
-                <p>Tu peso recomendado es {{ PIdealM |floatformat }} Kg.<br> Te faltan {{ KgF |floatformat }} Kilos debes bajar de peso </p>
-                {% elif PIdealM > peso %}
-                <p>Tu peso recomendado es {{ PIdealM |floatformat }} Kg.<br> Te Sobran {{ KgF |floatformat }} Kilos debes subir de peso</p>
-                {% elif PIdealM == peso %}
-                <p>Tu peso recomendado es {{ PIdealM |floatformat }} Kg<br> Felicidades! Estas en tu peso ideal</p>
+                {% if PIdealH < peso %}
+                <p>Tu peso recomendado es {{ PIdealH |floatformat }} Kg.<br> Te faltan {{ KgF |floatformat }} Kilos debes bajar de peso </p>
+                {% elif PIdealH > peso %}
+                <p>Tu peso recomendado es {{ PIdealH |floatformat }} Kg.<br> Te Sobran {{ KgF |floatformat }} Kilos debes subir de peso</p>
+                {% elif PIdealH == peso %}
+                <p>Tu peso recomendado es {{ PIdealH |floatformat }} Kg<br> Felicidades! Estas en tu peso ideal</p>
                 {% endif %} 
             {% elif edad >= 39 %}
-                {% if PGC_M <= 21 %}
+                {% if PGC_H <= 8 %}
                     <h5>Resultado</h5>
-                    <p>No tienes la suficiente Grasa en el Cuerpo.<br> Tu Porcentaje de Grasa es: {{ PGC_M|floatformat }}% <br>Consejo: Es esencial tener un PGC mas alto!</p>
-                {% elif PGC_M <= 33 %}
+                    <p>No tienes la suficiente Grasa en el Cuerpo.<br> Tu Porcentaje de Grasa es: {{ PGC_H|floatformat }}% <br>Consejo: Es esencial tener un PGC mas alto!</p>
+                {% elif PGC_H <= 20 %}
                     <h5>Resultado</h5>
-                    <p>Genial! te encuentras Saludable!<br> Tu Porcentaje de Grasa es: {{ PGC_M|floatformat }}% <br>Consejo: Talvez tengas que perder grasa de la barriga</p>
-                {% elif PGC_M <= 39 %}
+                    <p>Genial! te encuentras Saludable!<br> Tu Porcentaje de Grasa es: {{ GC_H|floatformat }}% <br>Consejo: Talvez tengas que perder grasa de la barriga</p>
+                {% elif PGC_H <= 25 %}
                     <h5>Resultado</h5>
-                    <p>Tienes Sobrepeso<br> Tu Porcentaje de Grasa es: {{ PGC_M|floatformat }}% <br>Consejo: Debes cuidarte tu salud es importante</p>    
-                {% elif PGC_M > 39 %}
+                    <p>Tienes Sobrepeso<br> Tu Porcentaje de Grasa es: {{ PGC_H|floatformat }}% <br>Consejo: Debes cuidarte tu salud es importante</p>    
+                {% elif PGC_H > 25 %}
                     <h5>Resultado</h5>
-                    <p>Tienes Obesidad<br> Tu Porcentaje de Grasa es: {{ PGC_M|floatformat }}% <br>Consejo: Esto es peligroso la Obesidad puede traer muchas enfermedades</p>   
+                    <p>Tienes Obesidad<br> Tu Porcentaje de Grasa es: {{ PGC_H|floatformat }}% <br>Consejo: Esto es peligroso la Obesidad puede traer muchas enfermedades</p>   
                 {% endif %}
-                {% if PIdealM < peso %}
-                <p>Tu peso recomendado es {{ PIdealM |floatformat }} Kg.<br> Te faltan {{ KgF |floatformat }} Kilos debes bajar de peso </p>
-                {% elif PIdealM > peso %}
-                <p>Tu peso recomendado es {{ PIdealM |floatformat }} Kg.<br> Te Sobran {{ KgF |floatformat }} Kilos debes subir de peso</p>
-                {% elif PIdealM == peso %}
-                <p>Tu peso recomendado es {{ PIdealM |floatformat }} Kg<br> Felicidades! Estas en tu peso ideal</p>
+                {% if PIdealH < peso %}
+                <p>Tu peso recomendado es {{ PIdealH |floatformat }} Kg.<br> Te faltan {{ KgF |floatformat }} Kilos debes bajar de peso </p>
+                {% elif PIdealH > peso %}
+                <p>Tu peso recomendado es {{ PIdealH |floatformat }} Kg.<br> Te Sobran {{ KgF |floatformat }} Kilos debes subir de peso</p>
+                {% elif PIdealH == peso %}
+                <p>Tu peso recomendado es {{ PIdealH |floatformat }} Kg<br> Felicidades! Estas en tu peso ideal</p>
                 {% endif %} 
             {% elif edad >= 59 %}
-                {% if PGC_M <= 23 %}
+                {% if PGC_H <= 11 %}
                     <h5>Resultado</h5>
-                    <p>No tienes la suficiente Grasa en el Cuerpo.<br> Tu Porcentaje de Grasa es: {{ PGC_M|floatformat }}% <br>Consejo: debes tener una dieta mas saludable a tu edad necesitas un poco mas de grasa.</p>
-                {% elif PGC_M <= 35 %}
+                    <p>No tienes la suficiente Grasa en el Cuerpo.<br> Tu Porcentaje de Grasa es: {{ PGC_H|floatformat }}% <br>Consejo: debes tener una dieta mas saludable a tu edad necesitas un poco mas de grasa.</p>
+                {% elif PGC_H <= 22 %}
                     <h5>Resultado</h5>
-                    <p>Genial! te encuentras Saludable!<br> Tu Porcentaje de Grasa es: {{ PGC_M|floatformat }}% <br>Consejo: Talvez tengas que perder grasa de la barriga ¡Bien hecho!</p>
-                {% elif PGC_M <= 40 %}
+                    <p>Genial! te encuentras Saludable!<br> Tu Porcentaje de Grasa es: {{ PGC_H|floatformat }}% <br>Consejo: Talvez tengas que perder grasa de la barriga ¡Bien hecho!</p>
+                {% elif PGC_H <= 28 %}
                     <h5>Resultado</h5>
-                    <p>Tienes Sobrepeso<br> Tu Porcentaje de Grasa es: {{ PGC_M|floatformat }}% <br>Consejo: Debes cuidarte tu salud es importante. Recuerda ir con un especializasta</p>
-                {% elif PGC_M > 40 %}
+                    <p>Tienes Sobrepeso<br> Tu Porcentaje de Grasa es: {{ PGC_H|floatformat }}% <br>Consejo: Debes cuidarte tu salud es importante. Recuerda ir con un especializasta</p>
+                {% elif PGC_H > 28 %}
                     <h5>Resultado</h5>
-                    <p>Tienes Obesidad<br> Tu Porcentaje de Grasa es: {{ PGC_M|floatformat }}% <br>Consejo: Esto es peligroso la Obesidad puede traer muchas enfermedades. ¡Comienza de a poco, tu puedes!</p>
+                    <p>Tienes Obesidad<br> Tu Porcentaje de Grasa es: {{ PGC_H|floatformat }}% <br>Consejo: Esto es peligroso la Obesidad puede traer muchas enfermedades. ¡Comienza de a poco, tu puedes!</p>
                 {% endif %} 
-                {% if PIdealM < peso %}
-                <p>Tu peso recomendado es {{ PIdealM |floatformat }} Kg.<br> Te faltan {{ KgF |floatformat }} Kilos debes bajar de peso </p>
-                {% elif PIdealM > peso %}
-                <p>Tu peso recomendado es {{ PIdealM |floatformat }} Kg.<br> Te Sobran {{ KgF |floatformat }} Kilos debes subir de peso</p>
-                {% elif PIdealM == peso %}
-                <p>Tu peso recomendado es {{ PIdealM |floatformat }} Kg<br> Felicidades! Estas en tu peso ideal</p>
+                {% if PIdealH < peso %}
+                <p>Tu peso recomendado es {{ PIdealH |floatformat }} Kg.<br> Te faltan {{ KgF |floatformat }} Kilos debes bajar de peso </p>
+                {% elif PIdealH > peso %}
+                <p>Tu peso recomendado es {{ PIdealH |floatformat }} Kg.<br> Te Sobran {{ KgF |floatformat }} Kilos debes subir de peso</p>
+                {% elif PIdealH == peso %}
+                <p>Tu peso recomendado es {{ PIdealH |floatformat }} Kg<br> Felicidades! Estas en tu peso ideal</p>
                 {% endif %}  
             {% elif edad >= 79 %}
-                {% if PGC_M <= 24 %}
+                {% if PGC_H <= 13 %}
                     <h5>Resultado</h5>
-                    <p>No tienes la suficiente Grasa en el Cuerpo.<br> Tu Porcentaje de Grasa es: {{ PGC_M|floatformat }}% <br>Consejo: Debes tener mas PGC para estar saludable recuerda consultar con un especializasta</p>
-                {% elif PGC_M <= 36 %}
+                    <p>No tienes la suficiente Grasa en el Cuerpo.<br> Tu Porcentaje de Grasa es: {{ PGC_H|floatformat }}% <br>Consejo: Debes tener mas PGC para estar saludable recuerda consultar con un especializasta</p>
+                {% elif PGC_H <= 25 %}
                     <h5>Resultado</h5>
-                    <p>Genial! te encuentras Saludable!<br> Tu Porcentaje de Grasa es: {{ PGC_M|floatformat }}% <br>Consejo: Talvez tengas que perder grasa de la barriga ¡Genial!</p>
-                {% elif PGC_M <= 42 %}
+                    <p>Genial! te encuentras Saludable!<br> Tu Porcentaje de Grasa es: {{ PGC_H|floatformat }}% <br>Consejo: Talvez tengas que perder grasa de la barriga ¡Genial!</p>
+                {% elif PGC_H <= 30 %}
                     <h5>Resultado</h5>
-                    <p>Tienes Sobrepeso<br> Tu Porcentaje de Grasa es: {{ PGC_M|floatformat }}% <br>Consejo: Debes cuidarte tu salud es importante comienza lento y de a poco. Recuerda consultar un especializasta</p>
-                {% elif PGC_M > 42 %}
+                    <p>Tienes Sobrepeso<br> Tu Porcentaje de Grasa es: {{ PGC_H|floatformat }}% <br>Consejo: Debes cuidarte tu salud es importante comienza lento y de a poco. Recuerda consultar un especializasta</p>
+                {% elif PGC_H > 30 %}
                     <h5>Resultado</h5>
-                    <p>Tienes Obesidad<br> Tu Porcentaje de Grasa es: {{ PGC_M|floatformat }}% <br>Consejo: Esto es peligroso la Obesidad puede traer muchas enfermedades comienza lento y de a poco. Recuerda consultar un especializasta</p>
+                    <p>Tienes Obesidad<br> Tu Porcentaje de Grasa es: {{ PGC_H|floatformat }}% <br>Consejo: Esto es peligroso la Obesidad puede traer muchas enfermedades comienza lento y de a poco. Recuerda consultar un especializasta</p>
                 {% endif %}
-                {% if PIdealM < peso %}
-                <p>Tu peso recomendado es {{ PIdealM |floatformat }} Kg.<br> Te faltan {{ KgF |floatformat }} Kilos debes bajar de peso </p>
-                {% elif PIdealM > peso %}
-                <p>Tu peso recomendado es {{ PIdealM |floatformat }} Kg.<br> Te Sobran {{ KgF |floatformat }} Kilos debes subir de peso</p>
-                {% elif PIdealM == peso %}
-                <p>Tu peso recomendado es {{ PIdealM |floatformat }} Kg<br> Felicidades! Estas en tu peso ideal</p>
+                {% if PIdealH < peso %}
+                <p>Tu peso recomendado es {{ PIdealH |floatformat }} Kg.<br> Te faltan {{ KgF |floatformat }} Kilos debes bajar de peso </p>
+                {% elif PIdealH > peso %}
+                <p>Tu peso recomendado es {{ PIdealH |floatformat }} Kg.<br> Te Sobran {{ KgF |floatformat }} Kilos debes subir de peso</p>
+                {% elif PIdealH == peso %}
+                <p>Tu peso recomendado es {{ PIdealH |floatformat }} Kg<br> Felicidades! Estas en tu peso ideal</p>
                 {% endif %}     
             {% endif %} 
         {% endif %}
@@ -147,7 +143,7 @@
         <article class="row">
             <h4 class="text-light fw-bolder">¿Cómo interpretar el PGC?</h4>
             <div class="col-sm-12 col-lg-5 table-responsive-sm">
-                <p class="h6 text-light">Porcentaje de Grasa Corporal (EN MUJERES)</p>
+                <p class="h6 text-light">Porcentaje de Grasa Corporal (EN HOMBRES)</p>
                 <table class="table table-light table-bordered table-sm border border-5">
                     <thead class="text-center">
                     <tr>
@@ -160,38 +156,38 @@
                     <tbody>
                     <tr class="table-danger">
                         <td>Bajo en Grasa</td>
-                        <td>Menor a 21%</td>
-                        <td>Menor a 23%</td>
-                        <td>Menor a 24%</td>
+                        <td>Menor a 8%</td>
+                        <td>Menor a 11%</td>
+                        <td>Menor a 13%</td>
                     </tr>
                     <tr class="table-success">
                         <td>Saludable</td>
-                        <td>21 - 33%</td>
-                        <td>23 - 35%</td>
-                        <td>24 - 36%</td>
+                        <td>8 - 20%</td>
+                        <td>11 - 22%</td>
+                        <td>13 - 25%</td>
                     </tr>
                     <tr class="table-warning">
                         <td>Sobrepeso</td>
-                        <td>33 - 39%</td>
-                        <td>35 - 40%</td>
-                        <td>36 - 42%</td>
+                        <td>20 - 25%</td>
+                        <td>22 - 28%</td>
+                        <td>25 - 30%</td>
                     </tr>
                     <tr class="table-danger">
                         <td>Obesidad</td>
-                        <td>Mayor a 39%</td>
-                        <td>Mayor a 40%</td>
-                        <td>Mayor a 42%</td>
+                        <td>Mayor a 25%</td>
+                        <td>Mayor a 28%</td>
+                        <td>Mayor a 30%</td>
                     </tr>
                     </tbody>
                 </table>
             </div>
             <div class="col-sm-12 col-lg-7">
-                <h5 class="fw-bolder">Porcentaje de grasa ideal para una mujer</h5>
-                <p class="text-start text-light">Para establecer rangos de grasa ideal para mujeres vamos a utilizar tres segmentos de edad y hasta cuatro clasificaciones en función del resultado:</p>
+                <h5 class="fw-bolder">Porcentaje de grasa ideal para un hombre</h5>
+                <p class="text-start text-light">De nuevo establecemos tres rangos de edad y cuatro rangos de salud en base a los resultados:</p>
                 <ul>
-                    <li>Una mujer de entre 20 y 39 años estará baja en grasa si su porcentaje es inferior al 21%; saludable si su porcentaje se sitúa entre el 21 y el 33%; tendrá sobrepeso si su porcentaje está entre 33 y 39% y será obeso si el porcentaje supera el 39% de grasa corporal.</li>
-                    <li>Si su edad está entre 40 y 59 años será baja en grasa con un porcentaje inferior al 23%; saludable para un porcentaje de 23-35%; sobrepeso con un 35-40% y obesidad con cifras superiores al 40%.</li>
-                    <li>Si la edad está entre los 60 y los 79 años entonces bajo en grasa será para los índices inferiores al 24%; saludable para 24-36%, sobrepeso para el 36-42% y obesidad para porcentajes superiores al 42% de grasa corporal.</li>
+                    <li>Un hombre de entre 20 y 39 años estará bajo en grasa si su porcentaje es inferior al 8%; saludable si su porcentaje se sitúa entre el 8 y el 20%; tendrá sobrepeso si su porcentaje está entre 20 y 25% y será obeso si el porcentaje supera el 25% de grasa corporal.</li>
+                    <li>Si su edad está entre 40 y 59 años será bajo en grasa con un porcentaje inferior al 11%; saludable para un porcentaje de 11-22%; sobrepeso con un 22-28% y obesidad con cifras superiores al 28%.</li>
+                    <li>Si la edad está entre los 60 y los 79 años entonces bajo en grasa será para los índices inferiores al 13%; saludable para 13-25%, sobrepeso para el 25-30% y obesidad para porcentajes superiores al 30% de grasa corporal.</li>
                 </ul>
             </div>
         </article>

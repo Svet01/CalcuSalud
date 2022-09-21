@@ -9,6 +9,9 @@
 {% endblock %}
 
 {% block body %}
+    {% if request.method == "POST"%}
+    <p>Esta calculadora resuelve valores aproximados. ¡Consulte a su Nutricionista para un valor exacto!</p>  
+    {% endif%}
     <p><strong>¿Qué es el IMC?</strong><br> El IMC o <strong>Índice de Masa Corporal</strong> es la medición que valora tu peso en relación con tu altura. Puede usarse a cualquier edad y se puede calcular el IMC de mujeres, hombres y niños. El cálculo del IMC clasifica a los individuos en bajo peso, peso normal o sobrepeso, por lo que gracias a él se puede determinar si una persona tiene un peso inapropiado o saludable. <a href="#info">¿Quieres saber mas?</a></p>
 {% endblock %}
 
@@ -16,10 +19,6 @@
     <h4 class="text-align">Calculadora de IMC</h4>
     <p>Ingrese los siguientes datos:</p>
     <form action="{% url 'CalcuIMC' %}" method="POST"> {% csrf_token %}
-        <div class="form-check mb-3">
-            <label class="form-check-label me-5" for="mujer">Mujer<input class="form-check-input" type="radio" name="sexo" value="M" id="mujer" checked></label>
-            <label class="form-check-label" for="hombre">Hombre<input class="form-check-input" type="radio" name="sexo" value="H" id="hombre"></label>
-        </div>
         <div class="input-group mb-3">
             <label class="input-group-text" id="basic-addon1" for="edad">Edad: </label>
             <input  id="edad" type="text" class="form-control" placeholder="18" aria-label="18" aria-describedby="basic-addon1" maxlength="3" name="edad" required/>
@@ -39,29 +38,29 @@
     <div class="pt-2">
         {% if IMC >= 40 %}
             <h5>Resultado</h5>
-            <p>Tu IMC es: {{ IMC|floatformat }} kg/m2 <br>Tu Situación es: Obesidad Extrema</p>
+            <p>Tu IMC es: {{ IMC|floatformat }} <br>Tu Situación es: Obesidad Extrema</p>
         {% elif IMC >= 39 %}
             <h5>Resultado</h5>
-            <p>Tu IMC es: {{ IMC|floatformat }} kg/m2 <br>Tu Situación es: Obesidad Tipo II</p>    
+            <p>Tu IMC es: {{ IMC|floatformat }}  <br>Tu Situación es: Obesidad Tipo II</p>    
         {% elif IMC >= 30 %}
             <h5>Resultado</h5>
-            <p>Tu IMC es: {{ IMC|floatformat }} kg/m2 <br>Tu Situación es: Obesidad</p>
+            <p>Tu IMC es: {{ IMC|floatformat }}  <br>Tu Situación es: Obesidad</p>
         {% elif IMC >= 25 %}
             <h5>Resultado</h5>
-            <p>Tu IMC es: {{ IMC|floatformat }} kg/m2 <br>Tu Situación es: Sobrepeso</p>
+            <p>Tu IMC es: {{ IMC|floatformat }}  <br>Tu Situación es: Sobrepeso</p>
         {% elif IMC >= 18 %}
             <h5>Resultado</h5>
-            <p>Tu IMC es: {{ IMC|floatformat }} kg/m2 <br>Tu Situación es: Peso Normal</p>
+            <p>Tu IMC es: {{ IMC|floatformat }}  <br>Tu Situación es: Peso Normal</p>
         {% elif IMC <= 18 %}
             <h5>Resultado</h5>
-            <p>Tu IMC es: {{ IMC|floatformat }} kg/m2 <br>Tu Situación es: Bajo Peso</p>
+            <p>Tu IMC es: {{ IMC|floatformat }}  <br>Tu Situación es: Bajo Peso</p>
         {% endif %}    
     </div>
 {% endblock %}
 
 {% block info %}
         <article class="row">
-            <h4 class="text-light">¿Cómo interpretar el IMC?</h4>
+            <h4 class="text-light fw-bolder">¿Cómo interpretar el IMC?</h4>
             <div class="col-sm-12 col-lg-5 table-responsive-sm">
                 <p class="h6 text-light">tabla de la OMS para mujeres y hombres</p>
                 <table class="table table-light table-bordered table-sm border border-5">
@@ -100,7 +99,7 @@
                 </table>
             </div>
             <div class="col-sm-12 col-lg-7">
-                <h5>El IMC ideal que hay que tener para estar sanos</h5>
+                <h5 class="fw-bolder">El IMC ideal que hay que tener para estar sanos</h5>
                 <p class="text-start text-light">
                     El IMC aconsejable para tener una salud óptima, el índice de masa corporal promedio para una población adulta debe estar en el rango de 21 a 23, siendo en cualquier caso válido un IMC de entre 18,5 y 24,9.<br>
                     Efectos adversos por encima de un IMC de 25: la obesidad provoca efectos metabólicos adversos sobre la presión arterial, el colesterol, los triglicéridos y la resistencia a la insulina.<br>
@@ -109,18 +108,18 @@
             </div>
         </article>
         <article id="info" class="row">
-            <h4>¿Cual es la formula para Calcular el IMC?</h4>
+            <h4 class="fw-bolder">¿Cual es la formula para Calcular el IMC?</h4>
             <p>la fórmula para el IMC es el <strong>peso en kilogramos dividido por la estatura en metros cuadrados.</strong> Debido a que la estatura por lo general se mide en centímetros, divida la estatura en centímetros por 100 para obtener la estatura en metros.<br>Ejemplo: Peso = 68 kg, Estatura = 165 cm (1.65 m)
-                <br>Cálculo: 68 ÷ (1.65)*2 = 24.98</p>
+                <br>Cálculo: 68 ÷ (1.65)*2 = 24.98 IMC</p>
         </article>
         <article class="row">
-            <h4>¿Por qué no hay que fijarse solo en el IMC?</h4>
-            <ul>
-                <li>1. Porque no distingue entre grasa y músculo: por un lado, el IMC puede que diga que una persona está en un valor normal, aunque en realidad , puede tener un índice de grasa superior a lo recomendado. Por contra, deportistas muy musculados pueden dar un nivel de IMC superior pero estar más saludables. Por ello, conviene calcular también el porcentaje de grasa.</li>
-                <li>2. Porque no distingue entre sexos: con el mismo IMC, las mujeres tienden a tener más grasa corporal que los hombres.</li>
-                <li>3. Porque no distingue entre edades: con el mismo IMC, las personas de edad avanzada, en promedio, tienden a tener más grasa corporal que los adultos más jóvenes.</li>
-                <li>4. Porque no presta atención a otros posibles riesgos: a pesar de un IMC aceptable, una personas puede desarrollar enfermedades vinculadas a la obesidad por tener un alto nivel de grasa abdominal, por tener la presión arterial alta o por la falta de actividad física.</li>
-            </ul>
+            <h4 class="fw-bolder">¿Por qué no hay que fijarse solo en el IMC?</h4>
+            <ol>
+                <li>Porque no distingue entre grasa y músculo: por un lado, el IMC puede que diga que una persona está en un valor normal, aunque en realidad , puede tener un índice de grasa superior a lo recomendado. Por contra, deportistas muy musculados pueden dar un nivel de IMC superior pero estar más saludables. Por ello, conviene calcular también el porcentaje de grasa.</li>
+                <li>Porque no distingue entre sexos: con el mismo IMC, las mujeres tienden a tener más grasa corporal que los hombres.</li>
+                <li>Porque no distingue entre edades: con el mismo IMC, las personas de edad avanzada, en promedio, tienden a tener más grasa corporal que los adultos más jóvenes.</li>
+                <li>Porque no presta atención a otros posibles riesgos: a pesar de un IMC aceptable, una personas puede desarrollar enfermedades vinculadas a la obesidad por tener un alto nivel de grasa abdominal, por tener la presión arterial alta o por la falta de actividad física.</li>
+            </ol>
         </article>
     </div>     
 {% endblock %}

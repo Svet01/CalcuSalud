@@ -5,18 +5,23 @@
 {% block title %} CalcuTMB {% endblock %}
 
 {% block imagen %}
-<img src="{% static 'Calculadoras/imagenes/TMB.jpg'%}" class="card-img-top" alt="...">
+    <img src="{% static 'Calculadoras/imagenes/TMB.jpg'%}" class="card-img-top" alt="...">
 {% endblock %}
 
 {% block body %}
-Dolorem debitis incidunt quos molestiae, impedit nulla quasi officiis architecto alias, sit earum sint aliquid dolor fugit, eveniet at ipsum fuga amet vel laudantium, magni velit minus iste quidem non quae? Omnis cum hic expedita at facilis, assumenda veritatis repellat cumque, alias eum quibusdam aut iste molestiae libero aperiam magni, modi provident molestias fuga quae porro voluptatem sunt doloremque vero quaerat. Suscipit aspernatur vitae totam ducimus, minima eius odit pariatur ducimus. Dignissimos qui quo expedita commodi reiciendis ipsa exercitationem sed nobis quasi, illum qui eum perferendis?
+    {% if request.method == "POST"%}
+    <p>Esta calculadora resuelve valores aproximados. ¡Consulte a su Nutricionista para un valor exacto!</p>  
+    {% endif%}
+    <p><strong>¿Qué es el tasa metabólica basal (TMB)?</strong><br><strong>La tasa metabólica basal (TMB)</strong> es la cantidad mínima de energía que necesita tu cuerpo para sobrevivir realizando las funciones básicas, tales como respirar, parpadear, filtrar la sangre, regular la temperatura del cuerpo o sintetizar hormonas.
+Aunque estés en absoluto reposo, tu cuerpo sigue trabajando para llevar a cabo aquellas funciones vitales necesarias para el correcto funcionamiento de tu organismo.<a href="#info">¿Quieres saber mas?</a></p>
 {% endblock %}
 
 {% block form %}
-    <h2 class="mt-3 text-align">Calculadora de Tasa Metabolica Basal</h2>
-    <form action="{% url 'CalcuTMB' %}" method="POST" class="mt-5 p-5"> {% csrf_token %}
+    <h4 class="text-align">Calculadora de Tasa Metabolica Basal</h4>
+    <p>Ingrese los siguientes datos:</p>
+    <form action="{% url 'CalcuTMB' %}" method="POST"> {% csrf_token %}
         <div class="form-check mb-3">
-            <label class="form-check-label mt-2 me-5" for="mujer">Mujer<input class="form-check-input" type="radio" name="sexo" value="M" id="mujer" checked></label>
+            <label class="form-check-label me-5" for="mujer">Mujer<input class="form-check-input" type="radio" name="sexo" value="M" id="mujer" checked></label>
             <label class="form-check-label" for="hombre">Hombre<input class="form-check-input" type="radio" name="sexo" value="H" id="hombre"></label>
         </div>
         <div class="input-group mb-3">
@@ -31,16 +36,143 @@ Dolorem debitis incidunt quos molestiae, impedit nulla quasi officiis architecto
             <label class="input-group-text" id="basic-addon1" for="altura">Altura: </label>
             <input id="altura" type="text" class="form-control" placeholder="170" aria-label="170" aria-describedby="basic-addon1" maxlength="3" name="altura" required/>
         </div>
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="actividad">Nivel de Actividad</label>
+            <select class="form-select" id="actividad">
+                <option value="1.2">Poco o ningún ejercicio</option>
+                <option value="1.375">Ejercicio ligero (1-3 días a la semana)</option>
+                <option value="1.55">Ejercicio moderado (3-5 días a la semana)</option>
+                <option value="1.725">Ejercicio fuerte (6-7 días a la semana)</option>
+                <option value="1.9">Ejercicio muy fuerte (dos veces al día, entrenamientos muy duros)</option>
+            </select>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="DivirMacros" id="GanarMusculo" value="1">
+            <label class="form-check-label" for="GanarMusculo">Ganar Masa Muscular</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="DivirMacros" id="DefinirMusculo" value="2">
+            <label class="form-check-label" for="DefinirMusculo">Definicion Muscular </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="DivirMacros" id="PerderPeso" value="3" checked>
+            <label class="form-check-label" for="PerderPeso">Perdida de Peso</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="DivirMacros" id="MantenerPeso" value="4">
+            <label class="form-check-label" for="MantenerPeso">Mantenimiento De Peso</label>
+        </div>  
         <div class="d-grid gap-2">
             <input class="btn btn-light"  type="submit" value="Resultado"/>
         </div>
     </form>
-    
-    <h1>Resultado | Tasa Metabolica Basal</h1>
-        {% if sexo == "H" %}        
-        <p>Hombre: Tu Tasa Metabolica Basal es {{ TMB_H }} Kcal/dia</p> 
-        {% elif sexo == "M" %}
-        <p>Mujer: Tu Tasa Metabolica Basal es {{ TMB_M }} Kcal/dia</p>
+    <div class="pt-2">
+        {% if request.method == "POST" %} 
+            {% if sexo == "M"%}
+                <p>Mujer - Resultado</p>
+                <p>Tu TMB es: {{ TMBM |floatformat }} Kcal/diarias en REPOSO <br> Agregando tu Rutina es: {{ actiM| floatformat }} Kcal/d <br> Para un Deficit Calorico necesitas: {{ adelM |floatformat }} Kcal/d <br> Para Etapa de Volumen: {{ aumenM}} Kcal/d</p>
+                <p>Tus Macros Deben ser:<br>Carbohidratos: {{data_g_carbM| floatformat}} g<br>Proteinas: {{ data_g_proteM| floatformat }} g <br>Grasas: {{data_g_grasasM|floatformat}} g</p>
+            {% else %}
+                <p>Hombre - Resultado</p>
+                <p>Tu TMB es: {{ TMBH |floatformat }} Kcal/diarias en REPOSO <br> Agregando tu Rutina es: {{ actiH| floatformat }} Kcal/d <br> Para un Deficit Calorico necesitas: {{ adelH |floatformat }} Kcal/d <br> Para Etapa de Volumen: {{ aumenH}} Kcal/d</p>
+                <p>Tus Macros Deben ser:<br>Carbohidratos: {{data_g_carbH| floatformat}} g<br>Proteinas: {{ data_g_proteH| floatformat }} g <br>Grasas: {{data_g_grasasH|floatformat}} g</p>
+            {% endif %}
         {% endif %}
+    </div>
+{% endblock %}
 
+{% block info %}
+        <article class="row">
+            <h4 class="text-light">¿Qué es la tasa metabólica basal?</h4>
+            <p>El metabolismo basal es la energía que necesita tu cuerpo para sobrevivir realizando las funciones básicas, como respirar, bombear el corazón, filtrar la sangre, sintetizar hormonas o parpadear.
+
+                Es un gasto básico y digamos “predeterminado” porque aunque estés en absoluto reposo tu cuerpo sigue funcionando. Lo puedes comparar con la electricidad que gasta una televisión estando apagada en “stand by”.
+                
+                Pero el metabolismo de cada persona es diferente y depende de algunos factores como es el sexo, la edad, la altura, el peso o la corpulencia. Hasta la edad adulta la tasa de metabolismo va creciendo, se estabiliza unos años y a partir de los 40 años comienza a disminuir.
+                
+                La tasa metabólica basal es el cálculo de la calorías mínimas que precisa una persona para realizar sus funciones orgánicas cada día.</p>
+        </article>
+        <article id="info" class="row">
+            <h4 class="fw-bolder">¿Cómo calcular tu TMB?</h4>
+            <p>Existen muchas fórmulas para calcular tu TMB, pero una de las más utilizadas en todo el mundo es la fórmula de Harris Benedict descrita en 1919, revisada por Mifflin y St Jeor en 1990.</p>
+            <ul class="fw-bolder">
+                <li>HOMBRES   TMB= (10 x peso de Kg) + (6,25 x altura en cm) – (5 x edad en años) +  5</li>
+                <li>MUJERES     TMB= (10 x peso en kg) + (6,25 x altura en cm) – (5 x edad en años) – 161</li>
+            </ul>
+            <p>A partir de ahí, las necesidades calóricas de cada persona dependerán del tipo de actividad que realice, porque nadie se pasa el día tumbado en un sofá, bueno, quizá algunos si... Ten en cuenta que toda actividad que realices gasta energía, desde bajar escaleras, hasta planchar o estudiar para un examen.</p>
+            <p class="h6 text-light">Dependiendo del tipo de actividad que realices, la cantidad mínima de energía o el número de calorías que necesites variará según estos parámetros:</p>
+            <table class="table table-light table-bordered table-sm border border-5">
+                <thead class="text-center">
+                <tr class="table-primary">
+                    <th>Nivel de actividad fisica</th>
+                    <th>Factor de correción del TMB</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="table-light">
+                    <td>Personas sedentarias (no realizan prácticamente nada de ejercicio)</td>
+                    <td>TMB x 1,2</td>
+                </tr>
+                <tr class="table-light">
+                    <td>Personas ligeramente activas (realizan ejercicios suaves de 1 a 3 veces por semana)</td>
+                    <td>TMB x 1,375</td>
+                </tr>
+                <tr class="table-light">
+                    <td>Personas moderamente activas (practican deporte de 3 a 5 veces por semana)</td>
+                    <td>TMB x 1,55</td>
+                </tr>
+                <tr class="table-light">
+                    <td>Personas muy activas (practican deporte de 6 a 7 dias por semana)</td>
+                    <td>TMB x 1,725</td>
+                </tr>
+                <tr class="table-light">
+                    <td>Personas hiperactivas (realizan ejercicios fisicos muy intensos al menos 2 horas al día o tienen una actividad laboral física intensa)</td>
+                    <td>TMB x 1,9</td>
+                </tr>
+                </tbody>
+            </table>            
+        </article>
+        <article class="row">
+            <h4 class="fw-bolder">¿Que son los Macronutrientes?</h4>
+            <p>Los MACRONUTRIENTES son aquellas sustancias que proporcionan energía al organismo para un buen funcionamiento, y otros elementos necesarios para reparar y construir estructuras orgánicas, para promover el crecimiento y para regular procesos metabólicos.</p>
+            <ul class="fw-bolder">
+                <p>Este grupo está constituido por: </p>
+                <li>Proteínas</li>
+                <li>Grasas</li>
+                <li>Hidratos de Carbono / Carbohidratos</li>
+            </ul>
+            <h5 class="fw-bolder">PROTEÍNAS:</h5>
+            <p>Las proteínas son péptidos que están constituidos por aminoácidos que se liberan y se absorben en el intestino tras la digestión. Para entender mejor como es una proteína podríamos asemejarla a un tren donde cada vagón es un aminoácido. Algunos de estos aminoácidos son sintetizados por nuestro organismo a partir de otros aminoácidos, de los hidratos de carbono y de las grasas. Aquellos que el organismo no es capaz de sintetizar son los que se denominan aminoácidos esenciales, son 8 (triptófano, lisina, metionina, treonina, fenilalanina, leucina, isoleucina, valina y un noveno que es la histidina que resulta ser esencial en el crecimiento de los lactantes), estos aminoácidos sólo se consiguen a través de la alimentación.<br>Son los componentes de las estructuras de las células. Las necesidades de un adulto sano y sedentario son 0,8-1 g/kg/día. Nos aportan 4 kcalorías/gramo. Se recomienda entre un 10-15% del total de las calorías de la dieta en forma de proteínas en una dieta equilibrada.</p>
+            <h6>Principales funciones de las proteínas</h6>
+            <ul class="fw-bolder">
+                <li>Estructural: dan forma y soporte a los tejidos y células de nuestro organismo (por ejemplo el colágeno).</li>
+                <li>Defensiva: forman parte de otras moléculas encargadas de defender al organismo contra cuerpos extraños (por ejemplo las inmunoglobulinas).</li>
+                <li>Transportadora: algunas proteínas tienen la función de transportar sustancias a través del organismo (por ejemplo la hemoglobina).</li>
+                <li>Reguladora: ayudan a mantener determinadas funciones de nuestro cuerpo (por ejemplo la insulina).</li>
+                <li>Almacenamiento: permiten el almacenamiento de determinadas moléculas (por ejemplo la ferritina).</li>
+            </ul>
+            <p>Las proteínas pueden ser de origen animal cuando proceden de la carne, pescado, leche y huevos, así como de los derivados cárnicos (embutidos, jamones,…) y derivados lácteos (yogures, quesos, natillas…) y contienen los aminoácidos esenciales. Otras proteínas son de origen vegetal, y provienen de los cereales, las legumbres, los frutos secos y la soja; éstas no contienen algunos de los aminoácidos esenciales, aunque la combinación de las legumbres y cereales sí aporta los aminoácidos esenciales. Al menos el 50% de las proteínas de la dieta deben ser de origen animal. Las proteínas de alto valor biológico son aquellas que contienen todos los aminoácidos esenciales. Las dos proteínas modelo son la ovoalbúmina de la clara del huevo y la lactoalbúmina de la leche.</p>
+            <h5>HIDRATOS DE CARBONO:</h5>
+            <p>Son sustancias químicas que constan de una molécula simple de azúcar o de varias en diferentes formas. Cubren la necesidad más constante y básica del cuerpo: la energía. Aportan calorías para el organismo de disposición inmediata.</p>
+            <ul class="fw-bolder">
+                <p>Fuentes alimenticias de carbohidratos son: frutas, azúcar, cereales y derivados (pasta, pan), patatas, productos de grano entero.</p>
+                <li>Carbohidratos simples: son los azúcares simples (monosacáridos y disacáridos) y las féculas. La forma más común de monosacáridos es la glucosa (azúcar de la sangre). También galactosa (en vegetales) y fructosa (azúcar de la fruta y miel). Forman parte del grupo de disacáridos: la sacarosa (azúcar común), la lactosa (azúcar de la leche), y la maltosa (presente en cereales como la cebada). Pan blanco y pastas son fuentes de féculas.</li>
+                <li>Carbohidratos complejos (conocidos también como polisacáridos): se forman cuando se unen varias moléculas de glucosa. Los más importantes son el almidón (en cereales, tubérculos y legumbres), el glucógeno (en el hígado y músculos de animales) y la fibra (celulosa, pectinas, gomas..).</li>
+            </ul>
+            <p>Pero es importante controlar la ingesta de hidratos de carbono con azúcares añadidos y cereales refinados, ya que el exceso de este tipo de alimentos en la dieta es responsable del aumento de peso. Además, al ser refinados aportan poca fibra. Por ello, las guías alimentarias recomiendan consumir granos enteros, menos calóricos y con más fibra.
+
+                Los expertos en nutrición recomiendan que en una dieta normal, los carbohidratos deben cubrir el 45-65 % de la energía total (en una alimentación de 2000 calorías equivaldría a 300 gramos de carbohidratos). Un gramo de hidratos de carbono aporta 4 calorías de energía.</p>
+            <h5 class="fw-bolder">GRASAS:</h5>
+            <p>Son los nutrientes que aportan más energía (9 calorías por gramo frente a las 4 calorías de proteínas o carbohidratos). Las grasas son necesarias, ya que cumplen otras funciones imprescindibles para el organismo. El problema deriva cuando hay un consumo excesivo, ya que se acumula y aumenta el tejido adiposo y contribuyendo al sobrepeso y a la obesidad. Por lo que es importante controlar su ingesta, nunca eliminarla. Su composición es variada, y hay varios tipos:</p>
+            <ol class="fw-bolder">
+                <li>Grasas insaturadas: son las más grasas más saludables. Estudios demuestran que aumentan el colesterol HDL (bueno) y disminuyen el LDL (colesterol malo), por lo que protegen de enfermedades del corazón.</li>
+                <ul>
+                    <li>Grasas monoinsaturadas: son muy saludables. Fuentes ricas de este tipo de lípidos son el aceite de oliva, aceite de cacahuete, el de colza y frutos secos.</li>
+                    <li>Grasas poliinsaturadas: a este tipo pertenecen las beneficiosas grasas omega 3 (en pescados, especialmente azules) y los ácidos grasos omega-6 (en aceites vegetales como el de girasol, maíz, nuez o sésamo).</li>
+                </ul>
+                <li>Grasas saturadas: se encuentran en alimentos de origen animal (carne, queso, nata, mantequilla, manteca..) y productos manufacturados. Un consumo elevado de grasas saturadas aumenta los niveles de colesterol en la sangre.</li>
+            </ol>
+            <p>En una dieta normal, la ingesta de grasa total debe limitarse al 25-35% del total de calorías diarias y las grasas saturadas a sólo el 10% de las calorías diarias totales. Y reducir al máximo las grasas hidrogenadas o grasas trans (2 gramos por día en una dieta de 2.000 calorías), ya que son muy perjudiciales para el corazón.</p>
+        </article>
+    </div>     
 {% endblock %}
