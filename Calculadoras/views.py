@@ -1,10 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
 import math
 
 # Create your views here.
 
-
+@csrf_exempt
 def CalcuTMB(request):
     if request.method == "POST":
         # Get Datos = Recibe los datos del Usuario
@@ -138,7 +139,7 @@ def CalcuTMB(request):
     else:
         return render(request, "Calculadoras/CalcuTMB.html")
 
-
+@csrf_exempt
 def CalcuIMC(request):
     if request.method == "POST":
         # Get Datos = Recibe los datos del Usuario
@@ -158,7 +159,7 @@ def CalcuIMC(request):
     else:
         return render(request, "Calculadoras/CalcuIMC.html")
 
-
+@csrf_exempt
 def CalcuPGCM(request):
     if request.method == "POST":
         # Get Datos = Recibe los datos del Usuario
@@ -195,7 +196,7 @@ def CalcuPGCM(request):
     else:
         return render(request, "Calculadoras/CalcuPGCM.html")
 
-
+@csrf_exempt
 def CalCuPGCH(request):
     if request.method == "POST":
         # Get Datos = Recibe los datos del Usuario
@@ -223,7 +224,7 @@ def CalCuPGCH(request):
     else:
         return render(request, "Calculadoras/CalcuPGCH.html")
 
-
+@csrf_exempt
 def CalcuMCM(request):
     if request.method == "POST":
         # Get Datos = Recibe los datos del Usuario
