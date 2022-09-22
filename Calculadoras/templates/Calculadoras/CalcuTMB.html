@@ -10,9 +10,9 @@
 
 {% block body %}
     {% if request.method == "POST"%}
-    <p>Esta calculadora resuelve valores aproximados. ¡Consulte a su Nutricionista para un valor exacto!</p>  
+    <p class="font-monospace text-center ps-3">Esta calculadora resuelve valores aproximados. ¡Consulte a su Nutricionista para un valor exacto!</p>  
     {% endif%}
-    <p><strong>¿Qué es el tasa metabólica basal (TMB)?</strong><br><strong>La tasa metabólica basal (TMB)</strong> es la cantidad mínima de energía que necesita tu cuerpo para sobrevivir realizando las funciones básicas, tales como respirar, parpadear, filtrar la sangre, regular la temperatura del cuerpo o sintetizar hormonas.
+    <p class="p-3"><strong>¿Qué es el tasa metabólica basal (TMB)?</strong><br><strong>La tasa metabólica basal (TMB)</strong> es la cantidad mínima de energía que necesita tu cuerpo para sobrevivir realizando las funciones básicas, tales como respirar, parpadear, filtrar la sangre, regular la temperatura del cuerpo o sintetizar hormonas.
 Aunque estés en absoluto reposo, tu cuerpo sigue trabajando para llevar a cabo aquellas funciones vitales necesarias para el correcto funcionamiento de tu organismo.<a href="#info">¿Quieres saber mas?</a></p>
 {% endblock %}
 
@@ -26,15 +26,15 @@ Aunque estés en absoluto reposo, tu cuerpo sigue trabajando para llevar a cabo 
         </div>
         <div class="input-group mb-3">
             <label class="input-group-text" id="basic-addon1" for="edad">Edad: </label>
-            <input  id="edad" type="text" class="form-control" placeholder="18" aria-label="18" aria-describedby="basic-addon1" maxlength="3" name="edad" required/>
+            <input  id="edad" type="text" class="form-control" placeholder="18 años" aria-label="18" aria-describedby="basic-addon1" maxlength="3" name="edad" required/>
         </div>
         <div class="input-group mb-3">
             <label class="input-group-text" id="basic-addon1" for="peso">Peso: </label>
-            <input id="peso" type="text" class="form-control" placeholder="70" aria-label="70" aria-describedby="basic-addon1" maxlength="3" name="peso" required/>
+            <input id="peso" type="text" class="form-control" placeholder="70 kg" aria-label="70" aria-describedby="basic-addon1" maxlength="3" name="peso" required/>
         </div>
         <div class="input-group mb-3">
             <label class="input-group-text" id="basic-addon1" for="altura">Altura: </label>
-            <input id="altura" type="text" class="form-control" placeholder="170" aria-label="170" aria-describedby="basic-addon1" maxlength="3" name="altura" required/>
+            <input id="altura" type="text" class="form-control" placeholder="170 cm" aria-label="170" aria-describedby="basic-addon1" maxlength="3" name="altura" required/>
         </div>
         <div class="input-group mb-3">
             <label class="input-group-text" for="actividad">Nivel de Actividad</label>
@@ -63,14 +63,14 @@ Aunque estés en absoluto reposo, tu cuerpo sigue trabajando para llevar a cabo 
             <label class="form-check-label" for="MantenerPeso">Mantenimiento De Peso</label>
         </div>  
         <div class="d-grid gap-2">
-            <input class="btn btn-light"  type="submit" value="Resultado"/>
+            <input class="btn btn-success"  type="submit" value="Resultado"/>
         </div>
     </form>
     <div class="pt-2">
         {% if request.method == "POST" %} 
             {% if sexo == "M"%}
                 <p>Mujer - Resultado</p>
-                <p>Tu TMB es: {{ TMBM |floatformat }} Kcal/diarias en REPOSO <br> Agregando tu Rutina es: {{ actiM| floatformat }} Kcal/d <br> Para un Deficit Calorico necesitas: {{ adelM |floatformat }} Kcal/d <br> Para Etapa de Volumen: {{ aumenM}} Kcal/d</p>
+                <p>Tu TMB es: {{ TMBM |floatformat }} Kcal/diarias en REPOSO <br><strong>Ingesta diaria de calorías recomendada:</strong> <br>Agregando tu Rutina es: {{ actiM| floatformat }} Kcal/d <br> Para un Deficit Calorico necesitas: {{ adelM |floatformat }} Kcal/d <br> Para Etapa de Volumen: {{ aumenM}} Kcal/d</p>
                 <p>Tus Macros Deben ser:<br>Carbohidratos: {{data_g_carbM| floatformat}} g<br>Proteinas: {{ data_g_proteM| floatformat }} g <br>Grasas: {{data_g_grasasM|floatformat}} g</p>
             {% else %}
                 <p>Hombre - Resultado</p>

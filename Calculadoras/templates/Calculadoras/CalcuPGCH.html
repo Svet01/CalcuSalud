@@ -10,9 +10,9 @@
 
 {% block body %}
     {% if request.method == "POST"%}
-    <p>Esta calculadora resuelve valores aproximados. ¡Consulte a su Nutricionista para un valor exacto!</p>  
+    <p class="font-monospace">Esta calculadora resuelve valores aproximados. ¡Consulte a su Nutricionista para un valor exacto!</p>  
     {% endif%}
-    <p><strong>¿Qué es el PGC?</strong><br>Se trata de una medida indicativa de sobrepeso, o infrapeso, que nos ayuda a distinguir la masa muscular de la materia grasa que está presente en nuestra composición corporal.
+    <p class="p-3"><strong>¿Qué es el PGC?</strong><br>Se trata de una medida indicativa de sobrepeso, o infrapeso, que nos ayuda a distinguir la masa muscular de la materia grasa que está presente en nuestra composición corporal.
         El peso que vemos en la báscula no lo es todo y en el caso de los deportistas, índices como el <a href="{% url 'CalcuIMC' %}" class="text-muted">IMC (Índice de Masa Corporal)</a> no resultan suficiente para medir la masa muscular real.
         El porcentaje de grasa corporal depende de la edad, el sexo, el peso y el estilo de vida. Así, podemos establecer los rangos que se muestra a continuación. <a href="#info">¿Quieres saber mas?</a></p>
 {% endblock %}
@@ -44,7 +44,7 @@
             <input id="cintura" type="text" class="form-control" placeholder="140 cm" aria-label="70" aria-describedby="basic-addon1" maxlength="3" name="cintura" required/>
         </div>
         <div class="d-grid gap-2">
-            <input class="btn btn-light"  type="submit" value="Resultado"/>
+            <input class="btn btn-success"  type="submit" value="Resultado"/>
         </div>
     </form>
     <div class="mt-3">

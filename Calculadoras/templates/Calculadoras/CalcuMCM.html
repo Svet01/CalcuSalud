@@ -10,9 +10,9 @@
 
 {% block body %}
     {% if request.method == "POST"%}
-    <p>Esta calculadora resuelve valores aproximados. ¡Consulte a su Nutricionista para un valor exacto!</p>  
+    <p class="font-monospace">Esta calculadora resuelve valores aproximados. ¡Consulte a su Nutricionista para un valor exacto!</p>  
     {% endif%}
-    <p><strong>¿Qué es el MCM?</strong><br>El MCM o la Masa Corporal Magra está conformada por los órganos internos, además del conjunto de tejidos musculares y óseos, como los dientes y huesos.
+    <p class="p-3"><strong>¿Qué es el MCM?</strong><br>El MCM o la Masa Corporal Magra está conformada por los órganos internos, además del conjunto de tejidos musculares y óseos, como los dientes y huesos.
         Es importante conocer nuestra masa magra para orientar nuestra rutina de ejercicios y dieta, sobre cuánta masa grasa debemos perder. De esta manera, es posible conseguir una efectiva perdida de grasa corporal, sin el riesgo de perder masa muscular. <a href="#info">¿Quieres saber mas?</a></p>
 {% endblock %}
 
@@ -26,14 +26,14 @@
         </div>
         <div class="input-group mb-3">
             <label class="input-group-text" id="basic-addon1" for="peso">Peso: </label>
-            <input id="peso" type="text" class="form-control" placeholder="70" aria-label="70" aria-describedby="basic-addon1" maxlength="3" name="peso" required/>
+            <input id="peso" type="text" class="form-control" placeholder="70 Kg" aria-label="70" aria-describedby="basic-addon1" maxlength="3" name="peso" required/>
         </div>
         <div class="input-group mb-3">
             <label class="input-group-text" id="basic-addon1" for="altura">Altura: </label>
-            <input id="altura" type="text" class="form-control" placeholder="170" aria-label="170" aria-describedby="basic-addon1" maxlength="3" name="altura" required/>
+            <input id="altura" type="text" class="form-control" placeholder="170 cm" aria-label="170" aria-describedby="basic-addon1" maxlength="3" name="altura" required/>
         </div>
         <div class="d-grid gap-2">
-            <input class="btn btn-light"  type="submit" value="Resultado"/>
+            <input class="btn btn-success"  type="submit" value="Resultado"/>
         </div>
     </form>
     <div class="pt-3">

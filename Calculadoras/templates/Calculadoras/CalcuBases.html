@@ -46,29 +46,28 @@
       </div>
     </header>
 
-    <section id="calcuCard" class="card" style="max-width: 800px;">
-        <div class="row g-0">
-            <div class="col-sm-12 col-lg-5 asideInfo">
-                <div class="asideImg">
-                    {% block imagen %} {% endblock %}
-                </div>
-                <div class="asideText">
-                    {% block body %} {% endblock %}
-                </div>
-            </div>
-            <div class="col-sm-12 col-lg-7 asideForm">
-                <div class="card-body">
-                    {% block form %} {% endblock %}
-                </div>
-            </div>
-        </div>
-      </section>
-
+    
     <section class="infoCard container mt-2">
-        <div class="text-light">
-          {% block info %}{% endblock %}
+        <div id="calcuCard" class="card" style="width: 100%">
+          <div class="row g-0">
+              <div class="col-sm-12 col-lg-5 asideInfo">
+                  <div class="asideImg">
+                      {% block imagen %} {% endblock %}
+                  </div>
+                  <div class="asideText">
+                      {% block body %} {% endblock %}
+                  </div>
+              </div>
+              <div class="col-sm-12 col-lg-7 asideForm">
+                  <div class="card-body">
+                      {% block form %} {% endblock %}
+                  </div>
+              </div>
+          </div>
         </div>
-      </div>
+        <div class="text-light">
+          {% block info %} {% endblock %}
+        </div>
     </section>
 
     <footer class="mt-5 d-flex justify-content-around">
