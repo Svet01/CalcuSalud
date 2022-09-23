@@ -40,72 +40,63 @@
             </button>
         </div>
     </nav>
+        
     <div class="text-center rounded-3">
-      <div class="container-fluid py-2">
-        <h1 class="text-light display-5 fw-bold">CalcuSalud</h1>
-        <p class="text-light fs-5">Crea tu dieta o controla tu estado fisico aqui!</p>
-      </div>
+        <div class="container-fluid py-2">
+            <h1 class="text-light display-5 fw-bold">CalcuSalud</h1>
+            <p class="text-light fs-5">Crea tu dieta o controla tu estado fisico aqui!</p>
+        </div>
     </div>
-    <div class="card-group mt-5">
-        <div id="card-select" class="card m-3 col-lg-3 col-sm-12">
-            <a class="boton-a" href="{% url 'CalcuTMB' %}">
-                <img src="{% static 'Calculadoras/imagenes/TMB.jpg' %}" class="card-img-top imagen-card"
-                    alt="Tasa Metabolica Basal">
-                <div class="card-body">
-                    <div class="card-title">
-                        <h6 class="title">Tasa Metabolica Basal</h6>
-                    </div>
-                    <div class="card-content">
-                        <p class="card-text">Calcula tus Kcal/Diaras con esta Calculadora de TMB</p>
-                        <p class="card-text"><small class="text-muted">Click en la Tarjeta</small></p>
-                    </div>
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-6 row-cols-lg-4">
+            <div class="col">
+                <div id="card-select" class="card">
+                    <a class="boton-a" href="{% url 'CalcuTMB' %}">
+                        <img src="{% static 'Calculadoras/imagenes/TMB.jpg' %}" class="card-img-top imagen-card" alt="Tasa Metabolica Basal">
+                        <div class="card-body">
+                            <h6 class="card-title">Tasa Metabolica Basal</h6>
+                            <p class="card-text">Calcula tus Kcal/Diaras con esta Calculadora de TMB</p>
+                            <p class="card-text"><small class="text-muted">Click en la Tarjeta</small></p>
+                        </div>
+                    </a>
                 </div>
-            </a>
-        </div>
-        <div id="card-select" class="card m-3 col-lg-3 col-sm-12">
-            <a class="boton-a" href="{% url 'CalcuPGCM' %}">
-                <img src="{% static 'Calculadoras/imagenes/PGC.jpg' %}" class="card-img-top imagen-card"
-                    alt="Porcentaje de Grasa Corporal">
-                <div class="card-body">
-                    <div class="card-title">
-                        <h6 class="title">Porcentaje de Grasa Corporal</h6>
-                    </div>
-                    <div class="card-content">
-                        <p class="card-text">Ingresa tus datos para Calcular tu PGC con esta Calculadora</p>
-                        <p class="card-text"><small class="text-muted">Click en la Tarjeta</small></p>
-                    </div>
+            </div>
+            <div class="col">
+                <div id="card-select" class="card">
+                    <a class="boton-a" href="{% url 'CalcuPGCM' %}">
+                        <img src="{% static 'Calculadoras/imagenes/PGC.jpg' %}" class="card-img-top imagen-card" alt="Porcentaje de Grasa Corporal">
+                        <div class="card-body">
+                            <h6 class="card-title">Porcentaje de Grasa Corporal</h6>
+                            <p class="card-text">Ingresa tus datos para Calcular tu PGC con esta Calculadora</p>
+                            <p class="card-text"><small class="text-muted">Click en la Tarjeta</small></p>
+                        </div>
+                    </a>
                 </div>
-            </a>
-        </div>
-        <div id="card-select" class="card m-3 col-lg-3 col-sm-12">
-            <a class="boton-a" href="{% url 'CalcuIMC' %}">
-                <img src="{% static 'Calculadoras/imagenes/IMC.jpg' %}" class="card-img-top imagen-card"
-                    alt="Indice de Masa Corporal">
-                <div class="card-body">
-                    <div class="card-title">
-                        <h6 class="title">Indice de Masa Corporal</h6>
-                    </div>
-                    <div class="card-content">
-                        <p class="card-text">Mira tu Masa Corporal con esta Calculadora</p>
-                        <p class="card-text"><small class="text-muted">Click en la Tarjeta</small></p>
-                    </div>
+            </div>
+            <div class="col">
+                <div id="card-select" class="card">
+                    <a class="boton-a" href="{% url 'CalcuIMC' %}">
+                        <img src="{% static 'Calculadoras/imagenes/IMC.jpg' %}" class="card-img-top imagen-card" alt="Indice de Masa Corporal">
+                        <div class="card-body">
+                            <h6 class="card-title">Indice de Masa Corporal</h6>
+                            <p class="card-text">Mira tu Masa Corporal con esta Calculadora</p>
+                            <p class="card-text"><small class="text-muted">Click en la Tarjeta</small></p>
+                        </div>
+                    </a>
                 </div>
-            </a>
-        </div>
-        <div id="card-select" class="card m-3 col-lg-3 col-sm-12">
-            <a class="boton-a" href="{% url 'CalcuMCM' %}">
-                <img src="{% static 'Calculadoras/imagenes/MCM.jpg' %}" class="card-img-top imagen-card"
-                    alt="Masa Corporal Magra">
-                <div class="card-body">
-                    <div class="card-title">
-                        <h6 class="title">Masa Corporal Magra</h6>
-                    </div>
-                    <div class="card-content">
-                        <p class="card-text">Calcula tus Kg de Musculo con esta Calculadora</p>
-                        <p class="card-text"><small class="text-muted">Click en la Tarjeta</small></p>
-                    </div>
+            </div>
+            <div class="col">
+                <div id="card-select" class="card">
+                    <a class="boton-a" href="{% url 'CalcuMCM' %}">
+                        <img src="{% static 'Calculadoras/imagenes/MCM.jpg' %}" class="card-img-top imagen-card" alt="Masa Corporal Magra">
+                        <div class="card-body">
+                            <h6 class="card-title">Masa Corporal Magra</h6>
+                            <p class="card-text">Calcula tus Kg de Musculo con esta Calculadora</p>
+                            <p class="card-text"><small class="text-muted">Click en la Tarjeta</small></p>
+                        </div>
+                    </a>
                 </div>
-            </a>
+            </div>
         </div>
     </div>
 </body>

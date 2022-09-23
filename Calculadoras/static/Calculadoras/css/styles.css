@@ -24,7 +24,6 @@ body::before {
 }
 
 #card-select {
-    margin: 20px !important;
     background-color: rgb(240, 240, 240) !important;
     width: 280px !important;
     line-height: auto !important;
