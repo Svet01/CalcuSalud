@@ -12,12 +12,12 @@
     {% if request.method == "POST"%}
     <p class="font-monospace text-center ps-3">Esta calculadora resuelve valores aproximados. ¡Consulte a su Nutricionista para un valor exacto!</p>  
     {% endif%}
-    <p class="p-3"><strong>¿Qué es el tasa metabólica basal (TMB)?</strong><br><strong>La tasa metabólica basal (TMB)</strong> es la cantidad mínima de energía que necesita tu cuerpo para sobrevivir realizando las funciones básicas, tales como respirar, parpadear, filtrar la sangre, regular la temperatura del cuerpo o sintetizar hormonas.
-Aunque estés en absoluto reposo, tu cuerpo sigue trabajando para llevar a cabo aquellas funciones vitales necesarias para el correcto funcionamiento de tu organismo.<a href="#info">¿Quieres saber mas?</a></p>
+    <p class="p-3"><strong>¿Qué es la Tasa Metabólica Basal (TMB)?</strong><br><strong>La tasa metabólica basal (TMB)</strong> es la cantidad mínima de energía que necesita tu cuerpo para sobrevivir realizando las funciones básicas, tales como respirar, parpadear, filtrar la sangre, regular la temperatura del cuerpo o sintetizar hormonas.
+Aunque estés en absoluto reposo, tu cuerpo sigue trabajando para llevar a cabo aquellas funciones vitales necesarias para el correcto funcionamiento de tu organismo.<a href="#info">¿Quieres saber más?</a></p>
 {% endblock %}
 
 {% block form %}
-    <h4 class="text-align">Calculadora de Tasa Metabolica Basal</h4>
+    <h4 class="text-align">Calculadora de Tasa Metabólica Basal</h4>
     <p>Ingrese los siguientes datos:</p>
     <form action="{% url 'CalcuTMB' %}" method="POST"> {% csrf_token %}
         <div class="form-check mb-3">
@@ -52,7 +52,7 @@ Aunque estés en absoluto reposo, tu cuerpo sigue trabajando para llevar a cabo 
         </div>
         <div class="form-check">
             <input class="form-check-input" type="radio" name="DivirMacros" id="DefinirMusculo" value="2">
-            <label class="form-check-label" for="DefinirMusculo">Definicion Muscular </label>
+            <label class="form-check-label" for="DefinirMusculo">Definición Muscular </label>
         </div>
         <div class="form-check">
             <input class="form-check-input" type="radio" name="DivirMacros" id="PerderPeso" value="3" checked>
@@ -70,11 +70,11 @@ Aunque estés en absoluto reposo, tu cuerpo sigue trabajando para llevar a cabo 
         {% if request.method == "POST" %} 
             {% if sexo == "M"%}
                 <p>Mujer - Resultado</p>
-                <p>Tu TMB es: {{ TMBM |floatformat }} Kcal/diarias en REPOSO <br><strong>Ingesta diaria de calorías recomendada:</strong> <br>Agregando tu Rutina es: {{ actiM| floatformat }} Kcal/d <br> Para un Deficit Calorico necesitas: {{ adelM |floatformat }} Kcal/d <br> Para Etapa de Volumen: {{ aumenM}} Kcal/d</p>
+                <p>Tu TMB es: {{ TMBM |floatformat }} Kcal/diarias en REPOSO <br><strong>Ingesta diaria de calorías recomendada:</strong> <br>Agregando tu Rutina es: {{ actiM| floatformat }} Kcal/d <br> Para un Déficit Calórico necesitás: {{ adelM |floatformat }} Kcal/d <br> Para Etapa de Volumen: {{ aumenM}} Kcal/d</p>
                 <p>Tus Macros Deben ser:<br>Carbohidratos: {{data_g_carbM| floatformat}} g<br>Proteinas: {{ data_g_proteM| floatformat }} g <br>Grasas: {{data_g_grasasM|floatformat}} g</p>
             {% else %}
                 <p>Hombre - Resultado</p>
-                <p>Tu TMB es: {{ TMBH |floatformat }} Kcal/diarias en REPOSO <br> Agregando tu Rutina es: {{ actiH| floatformat }} Kcal/d <br> Para un Deficit Calorico necesitas: {{ adelH |floatformat }} Kcal/d <br> Para Etapa de Volumen: {{ aumenH}} Kcal/d</p>
+                <p>Tu TMB es: {{ TMBH |floatformat }} Kcal/diarias en REPOSO <br> Agregando tu Rutina es: {{ actiH| floatformat }} Kcal/d <br> Para un Déficit Calórico necesitás: {{ adelH |floatformat }} Kcal/d <br> Para Etapa de Volumen: {{ aumenH}} Kcal/d</p>
                 <p>Tus Macros Deben ser:<br>Carbohidratos: {{data_g_carbH| floatformat}} g<br>Proteinas: {{ data_g_proteH| floatformat }} g <br>Grasas: {{data_g_grasasH|floatformat}} g</p>
             {% endif %}
         {% endif %}
@@ -90,7 +90,7 @@ Aunque estés en absoluto reposo, tu cuerpo sigue trabajando para llevar a cabo 
                 
                 Pero el metabolismo de cada persona es diferente y depende de algunos factores como es el sexo, la edad, la altura, el peso o la corpulencia. Hasta la edad adulta la tasa de metabolismo va creciendo, se estabiliza unos años y a partir de los 40 años comienza a disminuir.
                 
-                La tasa metabólica basal es el cálculo de la calorías mínimas que precisa una persona para realizar sus funciones orgánicas cada día.</p>
+                La tasa metabólica basal es el cálculo de las calorías mínimas que precisa una persona para realizar sus funciones orgánicas cada día.</p>
         </article>
         <article id="info" class="row">
             <h4 class="fw-bolder">¿Cómo calcular tu TMB?</h4>
@@ -104,8 +104,8 @@ Aunque estés en absoluto reposo, tu cuerpo sigue trabajando para llevar a cabo 
             <table class="table table-light table-bordered table-sm border border-5">
                 <thead class="text-center">
                 <tr class="table-primary">
-                    <th>Nivel de actividad fisica</th>
-                    <th>Factor de correción del TMB</th>
+                    <th>Nivel de actividad FÍsica</th>
+                    <th>Factor de corrección del TMB</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -118,7 +118,7 @@ Aunque estés en absoluto reposo, tu cuerpo sigue trabajando para llevar a cabo 
                     <td>TMB x 1,375</td>
                 </tr>
                 <tr class="table-light">
-                    <td>Personas moderamente activas (practican deporte de 3 a 5 veces por semana)</td>
+                    <td>Personas modera mente activas (practican deporte de 3 a 5 veces por semana)</td>
                     <td>TMB x 1,55</td>
                 </tr>
                 <tr class="table-light">
@@ -126,14 +126,14 @@ Aunque estés en absoluto reposo, tu cuerpo sigue trabajando para llevar a cabo 
                     <td>TMB x 1,725</td>
                 </tr>
                 <tr class="table-light">
-                    <td>Personas hiperactivas (realizan ejercicios fisicos muy intensos al menos 2 horas al día o tienen una actividad laboral física intensa)</td>
+                    <td>Personas hiperactivas (realizan ejercicios físicos muy intensos al menos 2 horas al día o tienen una actividad laboral física intensa)</td>
                     <td>TMB x 1,9</td>
                 </tr>
                 </tbody>
             </table>            
         </article>
         <article class="row">
-            <h4 class="fw-bolder">¿Que son los Macronutrientes?</h4>
+            <h4 class="fw-bolder">¿Qué son los Macronutrientes?</h4>
             <p>Los MACRONUTRIENTES son aquellas sustancias que proporcionan energía al organismo para un buen funcionamiento, y otros elementos necesarios para reparar y construir estructuras orgánicas, para promover el crecimiento y para regular procesos metabólicos.</p>
             <ul class="fw-bolder">
                 <p>Este grupo está constituido por: </p>

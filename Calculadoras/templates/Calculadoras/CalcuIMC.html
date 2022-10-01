@@ -12,11 +12,11 @@
     {% if request.method == "POST"%}
     <p class="font-monospace">Esta calculadora resuelve valores aproximados. ¡Consulte a su Nutricionista para un valor exacto!</p>  
     {% endif%}
-    <p class="p-3"><strong>¿Qué es el IMC?</strong><br> El IMC o <strong>Índice de Masa Corporal</strong> es la medición que valora tu peso en relación con tu altura. Puede usarse a cualquier edad y se puede calcular el IMC de mujeres, hombres y niños. El cálculo del IMC clasifica a los individuos en bajo peso, peso normal o sobrepeso, por lo que gracias a él se puede determinar si una persona tiene un peso inapropiado o saludable. <a href="#info">¿Quieres saber mas?</a></p>
+    <p class="p-3"><strong>¿Qué es el IMC?</strong><br> El IMC o <strong>Índice de Masa Corporal</strong> es la medición que valora tu peso en relación con tu altura. Puede usarse a cualquier edad y se puede calcular el IMC de mujeres, hombres y niños. El cálculo del IMC clasifica a los individuos en bajo peso, peso normal o sobrepeso, por lo que gracias a él se puede determinar si una persona tiene un peso inapropiado o saludable. <a href="#info">¿Quieres saber más?</a></p>
 {% endblock %}
 
 {% block form %}
-    <h4 class="text-align">Calculadora de Indice Masa Corporal</h4>
+    <h4 class="text-align">Calculadora de Índice de Masa Corporal</h4>
     <p>Ingrese los siguientes datos:</p>
     <form action="{% url 'CalcuIMC' %}" method="POST"> {% csrf_token %}
         <div class="input-group mb-3">
@@ -37,23 +37,23 @@
     </form>
     <div class="pt-2">
         {% if IMC >= 40 %}
-            <h5>Resultado</h5>
-            <p>Tu IMC es: {{ IMC|floatformat }} <br>Tu Situación es: Obesidad Extrema</p>
+            <h5 class="fw-bold mt-4 text-decoration-underline">Resultado:</h5>
+            <p>Tu IMC es: {{ IMC|floatformat }} <br>Tu Situación es: Obesidad Extrema | Revise la tabla para recomendaciones de su IMC</p>
         {% elif IMC >= 39 %}
-            <h5>Resultado</h5>
-            <p>Tu IMC es: {{ IMC|floatformat }}  <br>Tu Situación es: Obesidad Tipo II</p>    
+            <h5 class="fw-bold mt-4 text-decoration-underline">Resultado:</h5>
+            <p>Tu IMC es: {{ IMC|floatformat }}  <br>Tu Situación es: Obesidad Tipo II | Revise la tabla para recomendaciones de su IMC</p>    
         {% elif IMC >= 30 %}
-            <h5>Resultado</h5>
-            <p>Tu IMC es: {{ IMC|floatformat }}  <br>Tu Situación es: Obesidad</p>
+            <h5 class="fw-bold mt-4 text-decoration-underline">Resultado:</h5>
+            <p>Tu IMC es: {{ IMC|floatformat }}  <br>Tu Situación es: Obesidad | Revise la tabla para recomendaciones de su IMC</p>
         {% elif IMC >= 25 %}
-            <h5>Resultado</h5>
-            <p>Tu IMC es: {{ IMC|floatformat }}  <br>Tu Situación es: Sobrepeso</p>
+            <h5 class="fw-bold mt-4 text-decoration-underline">Resultado:</h5>
+            <p>Tu IMC es: {{ IMC|floatformat }}  <br>Tu Situación es: Sobrepeso | Revise la tabla para recomendaciones de su IMC</p>
         {% elif IMC >= 18 %}
-            <h5>Resultado</h5>
-            <p>Tu IMC es: {{ IMC|floatformat }}  <br>Tu Situación es: Peso Normal</p>
+            <h5 class="fw-bold mt-4 text-decoration-underline">Resultado:</h5>
+            <p>Tu IMC es: {{ IMC|floatformat }}  <br>Tu Situación es: Peso Normal | Te encuentras saludable segun tu IMC</p>
         {% elif IMC <= 18 %}
-            <h5>Resultado</h5>
-            <p>Tu IMC es: {{ IMC|floatformat }}  <br>Tu Situación es: Bajo Peso</p>
+            <h5 class="fw-bold mt-4 text-decoration-underline">Resultado:</h5>
+            <p>Tu IMC es: {{ IMC|floatformat }}  <br>Tu Situación es: Bajo Peso | Revise la tabla para recomendaciones de su IMC</p>
         {% endif %}    
     </div>
 {% endblock %}
