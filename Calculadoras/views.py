@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
 import math
 
@@ -185,8 +185,11 @@ def CalcuPGCM(request):
         KgFaltantes = int(peso - PesoIdealMujer)
 
         # PGC = Porcentaje de Grasa Corporal
-        PGC_Mujer = 163.205 * math.log10(cintura + cadera - cuello) - 97.684 * math.log10(altura) - 78.387
-
+        try:
+            PGC_Mujer = 163.205 * math.log10(cintura + cadera - cuello) - 97.684 * math.log10(altura) - 78.387
+        except ValueError:
+            messages.error(request, 'Ingresaste un valor incorrecto. ¡Intente lo nuevamente!')
+            return render(request, "Calculadoras/CalcuPGCM.html")
 
         context = {"PGC_M": PGC_Mujer, "edad": edad, "PIdealM": PesoIdealMujer, "peso": peso, "KgF": KgFaltantes}
         return render(request, "Calculadoras/CalcuPGCM.html", context)
@@ -203,6 +206,7 @@ def CalCuPGCH(request):
         altura = int(request.POST["altura"]) if "altura" in request.POST else 160
         cuello = int(request.POST["cuello"]) if 'cuello' in request.POST else 45
         cintura = int(request.POST["cintura"]) if "cintura" in request.POST else 120
+        AlertaError = True
 
         # PesoIdeal Hombre
         def PesoIdeal(altura, edad):
@@ -214,7 +218,11 @@ def CalCuPGCH(request):
         KgFaltantesH = int(peso - PesoIdealHombre)
 
         # PGC = Porcentaje de Grasa Corporal
-        PGC_Hombre = 495 / (1.0324 - 0.19077 * math.log10(cintura - cuello) + 0.15456 * math.log10(altura)) - 450
+        try:
+            PGC_Hombre = 495 / (1.0324 - 0.19077 * math.log10(cintura - cuello) + 0.15456 * math.log10(altura)) - 450
+        except ValueError:
+            messages.error(request, 'Ingresaste un valor incorrecto. ¡Intente lo nuevamente!')
+            return render(request, "Calculadoras/CalcuPGCM.html")
 
         context = {"PGC_H": PGC_Hombre, "edad": edad, "PIdealH": PesoIdealHombre, "peso": peso, "KgF": KgFaltantesH}
         return render(request, "Calculadoras/CalcuPGCH.html", context)

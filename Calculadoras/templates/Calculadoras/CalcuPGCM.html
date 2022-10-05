@@ -53,6 +53,16 @@
     </form>
     <div class="mt-3">
         {% if request.method == "POST" %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-danger d-flex align-items-center" role="alert">
+                        <i class='bx bxs-error bx-md'></i>
+                        <div>
+                            Ingresaste un valor incorrecto. ¡Intente lo nuevamente!
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
             {% if edad < 39%}
                 {% if PGC_M <= 21 %}
                     <h5>Resultado</h5>
