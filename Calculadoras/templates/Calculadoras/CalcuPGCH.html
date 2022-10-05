@@ -61,16 +61,16 @@
              {% endif %}
             {% if edad < 39 %}
                 {% if PGC_H <= 8 %}
-                    <h5>Resultado</h5>
+                    <h5 class="fw-bold mt-4 text-decoration-underline">Resultado:</h5>
                     <p>No tienes la suficiente Grasa en el Cuerpo.<br> Tu Porcentaje de Grasa es: {{ PGC_H|floatformat }}% <br>Consejo: Es esencial tener un PGC mas alto!</p>
                 {% elif PGC_H <= 20 %}
-                    <h5>Resultado</h5>
+                    <h5 class="fw-bold mt-4 text-decoration-underline">Resultado:</h5>
                     <p>Genial! te encuentras Saludable!<br> Tu Porcentaje de Grasa es: {{ PGC_H|floatformat }}% <br>Consejo: Talvez tengas que perder grasa de la barriga</p>
                 {% elif PGC_H <= 25 %}
-                    <h5>Resultado</h5>
+                    <h5 class="fw-bold mt-4 text-decoration-underline">Resultado:</h5>
                     <p>Tienes Sobrepeso<br> Tu Porcentaje de Grasa es: {{ PGC_H|floatformat }}% <br>Consejo: Debes cuidarte tu salud es importante</p>    
                 {% elif PGC_H > 25 %}
-                    <h5>Resultado</h5>
+                    <h5 class="fw-bold mt-4 text-decoration-underline">Resultado:</h5>
                     <p>Tienes Obesidad<br> Tu Porcentaje de Grasa es: {{ PGC_H|floatformat }}% <br>Consejo: Esto es peligroso la Obesidad puede traer muchas enfermedades</p>   
                 {% endif %}
                 {% if PIdealH < peso %}
@@ -82,16 +82,16 @@
                 {% endif %} 
             {% elif edad >= 39 %}
                 {% if PGC_H <= 8 %}
-                    <h5>Resultado</h5>
+                    <h5 class="fw-bold mt-4 text-decoration-underline">Resultado:</h5>
                     <p>No tienes la suficiente Grasa en el Cuerpo.<br> Tu Porcentaje de Grasa es: {{ PGC_H|floatformat }}% <br>Consejo: Es esencial tener un PGC mas alto!</p>
                 {% elif PGC_H <= 20 %}
-                    <h5>Resultado</h5>
+                    <h5 class="fw-bold mt-4 text-decoration-underline">Resultado:</h5>
                     <p>Genial! te encuentras Saludable!<br> Tu Porcentaje de Grasa es: {{ GC_H|floatformat }}% <br>Consejo: Talvez tengas que perder grasa de la barriga</p>
                 {% elif PGC_H <= 25 %}
-                    <h5>Resultado</h5>
+                    <h5 class="fw-bold mt-4 text-decoration-underline">Resultado:</h5>
                     <p>Tienes Sobrepeso<br> Tu Porcentaje de Grasa es: {{ PGC_H|floatformat }}% <br>Consejo: Debes cuidarte tu salud es importante</p>    
                 {% elif PGC_H > 25 %}
-                    <h5>Resultado</h5>
+                    <h5 class="fw-bold mt-4 text-decoration-underline">Resultado:</h5>
                     <p>Tienes Obesidad<br> Tu Porcentaje de Grasa es: {{ PGC_H|floatformat }}% <br>Consejo: Esto es peligroso la Obesidad puede traer muchas enfermedades</p>   
                 {% endif %}
                 {% if PIdealH < peso %}
@@ -103,16 +103,16 @@
                 {% endif %} 
             {% elif edad >= 59 %}
                 {% if PGC_H <= 11 %}
-                    <h5>Resultado</h5>
+                    <h5 class="fw-bold mt-4 text-decoration-underline">Resultado:</h5>
                     <p>No tienes la suficiente Grasa en el Cuerpo.<br> Tu Porcentaje de Grasa es: {{ PGC_H|floatformat }}% <br>Consejo: debes tener una dieta mas saludable a tu edad necesitas un poco mas de grasa.</p>
                 {% elif PGC_H <= 22 %}
-                    <h5>Resultado</h5>
+                    <h5 class="fw-bold mt-4 text-decoration-underline">Resultado:</h5>
                     <p>Genial! te encuentras Saludable!<br> Tu Porcentaje de Grasa es: {{ PGC_H|floatformat }}% <br>Consejo: Talvez tengas que perder grasa de la barriga ¡Bien hecho!</p>
                 {% elif PGC_H <= 28 %}
-                    <h5>Resultado</h5>
+                    <h5 class="fw-bold mt-4 text-decoration-underline">Resultado:</h5>
                     <p>Tienes Sobrepeso<br> Tu Porcentaje de Grasa es: {{ PGC_H|floatformat }}% <br>Consejo: Debes cuidarte tu salud es importante. Recuerda ir con un especializasta</p>
                 {% elif PGC_H > 28 %}
-                    <h5>Resultado</h5>
+                    <h5 class="fw-bold mt-4 text-decoration-underline">Resultado:</h5>
                     <p>Tienes Obesidad<br> Tu Porcentaje de Grasa es: {{ PGC_H|floatformat }}% <br>Consejo: Esto es peligroso la Obesidad puede traer muchas enfermedades. ¡Comienza de a poco, tu puedes!</p>
                 {% endif %} 
                 {% if PIdealH < peso %}
@@ -124,16 +124,16 @@
                 {% endif %}  
             {% elif edad >= 79 %}
                 {% if PGC_H <= 13 %}
-                    <h5>Resultado</h5>
+                    <h5 class="fw-bold mt-4 text-decoration-underline">Resultado:</h5>
                     <p>No tienes la suficiente Grasa en el Cuerpo.<br> Tu Porcentaje de Grasa es: {{ PGC_H|floatformat }}% <br>Consejo: Debes tener mas PGC para estar saludable recuerda consultar con un especializasta</p>
                 {% elif PGC_H <= 25 %}
-                    <h5>Resultado</h5>
+                    <h5 class="fw-bold mt-4 text-decoration-underline">Resultado:</h5>
                     <p>Genial! te encuentras Saludable!<br> Tu Porcentaje de Grasa es: {{ PGC_H|floatformat }}% <br>Consejo: Talvez tengas que perder grasa de la barriga ¡Genial!</p>
                 {% elif PGC_H <= 30 %}
-                    <h5>Resultado</h5>
+                    <h5 class="fw-bold mt-4 text-decoration-underline">Resultado:</h5>
                     <p>Tienes Sobrepeso<br> Tu Porcentaje de Grasa es: {{ PGC_H|floatformat }}% <br>Consejo: Debes cuidarte tu salud es importante comienza lento y de a poco. Recuerda consultar un especializasta</p>
                 {% elif PGC_H > 30 %}
-                    <h5>Resultado</h5>
+                    <h5 class="fw-bold mt-4 text-decoration-underline">Resultado:</h5>
                     <p>Tienes Obesidad<br> Tu Porcentaje de Grasa es: {{ PGC_H|floatformat }}% <br>Consejo: Esto es peligroso la Obesidad puede traer muchas enfermedades comienza lento y de a poco. Recuerda consultar un especializasta</p>
                 {% endif %}
                 {% if PIdealH < peso %}

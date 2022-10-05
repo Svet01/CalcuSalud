@@ -79,11 +79,11 @@ Aunque estés en absoluto reposo, tu cuerpo sigue trabajando para llevar a cabo 
                 {% endfor %}
             {% endif %}
             {% if sexo == "M"%}
-                <p>Mujer - Resultado</p>
+                <h5 class="fw-bold mt-4 text-decoration-underline">Resultado:</h5>
                 <p>Tu TMB es: {{ TMBM |floatformat }} Kcal/diarias en REPOSO <br><strong>Ingesta diaria de calorías recomendada:</strong> <br>Agregando tu Rutina es: {{ actiM| floatformat }} Kcal/d <br> Para un Déficit Calórico necesitás: {{ adelM |floatformat }} Kcal/d <br> Para Etapa de Volumen: {{ aumenM}} Kcal/d</p>
                 <p>Tus Macros Deben ser:<br>Carbohidratos: {{data_g_carbM| floatformat}} g<br>Proteinas: {{ data_g_proteM| floatformat }} g <br>Grasas: {{data_g_grasasM|floatformat}} g</p>
             {% else %}
-                <p>Hombre - Resultado</p>
+                <h5 class="fw-bold mt-4 text-decoration-underline">Resultado:</h5>
                 <p>Tu TMB es: {{ TMBH |floatformat }} Kcal/diarias en REPOSO <br> Agregando tu Rutina es: {{ actiH| floatformat }} Kcal/d <br> Para un Déficit Calórico necesitás: {{ adelH |floatformat }} Kcal/d <br> Para Etapa de Volumen: {{ aumenH}} Kcal/d</p>
                 <p>Tus Macros Deben ser:<br>Carbohidratos: {{data_g_carbH| floatformat}} g<br>Proteinas: {{ data_g_proteH| floatformat }} g <br>Grasas: {{data_g_grasasH|floatformat}} g</p>
             {% endif %}
