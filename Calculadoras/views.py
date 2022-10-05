@@ -18,7 +18,7 @@ def CalcuTMB(request):
             macros = int(request.POST["DivirMacros"]) if "DivirMacros" in request.POST else 1
         except ValueError:
             messages.error(request, 'Ingresaste un valor incorrecto. ¡Intente lo nuevamente!')
-            return render(request, "Calculadoras/CalcuPGCM.html")
+            return render(request, "Calculadoras/CalcuTMB.html")
 
 
         # TMB = Tasa Metabolica Basal
@@ -155,7 +155,7 @@ def CalcuIMC(request):
             altura = int(request.POST["altura"]) if "altura" in request.POST else 170
         except ValueError:
             messages.error(request, 'Ingresaste un valor incorrecto. ¡Intente lo nuevamente!')
-            return render(request, "Calculadoras/CalcuPGCM.html")
+            return render(request, "Calculadoras/CalcuIMC.html")
 
         # IMC = Indice de Masa Corporal
         def calIMC(altura, peso):
@@ -228,7 +228,7 @@ def CalCuPGCH(request):
             cintura = int(request.POST["cintura"]) if "cintura" in request.POST else 120
         except ValueError:
             messages.error(request, 'Ingresaste un valor incorrecto. ¡Intente lo nuevamente!')
-            return render(request, "Calculadoras/CalcuPGCM.html")
+            return render(request, "Calculadoras/CalcuPGCH.html")
 
         # PesoIdeal Hombre
         def PesoIdeal(altura, edad):
@@ -262,7 +262,7 @@ def CalcuMCM(request):
             altura = int(request.POST["altura"]) if "altura" in request.POST else 170
         except ValueError:
             messages.error(request, 'Ingresaste un valor incorrecto. ¡Intente lo nuevamente!')
-            return render(request, "Calculadoras/CalcuPGCM.html")
+            return render(request, "Calculadoras/CalcuMCM.html")
         # MCM = Masa Corporal Magra
         try:
             MCM_Hombre = (1.10 * peso) - (128 * (peso * peso) / (altura * altura))
