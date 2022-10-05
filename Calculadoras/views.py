@@ -18,9 +18,12 @@ def CalcuTMB(request):
 
 
         # TMB = Tasa Metabolica Basal
-        TMB_M = (10 * peso) + (6.25 * altura) - (5 * edad) + 161
-        TMB_H = (10 * peso) + (6.25 * altura) - (5 * edad) + 5
-
+        try:
+            TMB_M = (10 * peso) + (6.25 * altura) - (5 * edad) + 161
+            TMB_H = (10 * peso) + (6.25 * altura) - (5 * edad) + 5
+        except ValueError:
+            messages.error(request, 'Ingresaste un valor incorrecto. ¡Intente lo nuevamente!')
+            return render(request, "Calculadoras/CalcuTMB.html")
         # Factor Actividad + Calorias de mantenimiento
         acti_M = TMB_M * actividad
         acti_H = TMB_H * actividad
@@ -150,7 +153,11 @@ def CalcuIMC(request):
         def calIMC(altura, peso):
             m = (altura / 100)
             float(m)
-            IMC = (peso/(m * m))
+            try:
+                IMC = (peso/(m * m))
+            except ValueError:
+                messages.error(request, 'Ingresaste un valor incorrecto. ¡Intente lo nuevamente!')
+                return render(request, "Calculadoras/CalcuIMC.html")
             return IMC
         IMC = calIMC(altura, peso)
 
@@ -222,7 +229,7 @@ def CalCuPGCH(request):
             PGC_Hombre = 495 / (1.0324 - 0.19077 * math.log10(cintura - cuello) + 0.15456 * math.log10(altura)) - 450
         except ValueError:
             messages.error(request, 'Ingresaste un valor incorrecto. ¡Intente lo nuevamente!')
-            return render(request, "Calculadoras/CalcuPGCM.html")
+            return render(request, "Calculadoras/CalcuPGCH.html")
 
         context = {"PGC_H": PGC_Hombre, "edad": edad, "PIdealH": PesoIdealHombre, "peso": peso, "KgF": KgFaltantesH}
         return render(request, "Calculadoras/CalcuPGCH.html", context)
@@ -239,9 +246,12 @@ def CalcuMCM(request):
         altura = int(request.POST["altura"]) if "altura" in request.POST else 170
 
         # MCM = Masa Corporal Magra
-        MCM_Hombre = (1.10 * peso) - (128 * (peso * peso) / (altura * altura))
-        MCM_Mujer = (1.07 * peso) - (148 * (peso * peso) / (altura * altura))
-
+        try:
+            MCM_Hombre = (1.10 * peso) - (128 * (peso * peso) / (altura * altura))
+            MCM_Mujer = (1.07 * peso) - (148 * (peso * peso) / (altura * altura))
+        except ValueError:
+            messages.error(request, 'Ingresaste un valor incorrecto. ¡Intente lo nuevamente!')
+            return render(request, "Calculadoras/CalcuMCM.html")
         # MGC = Masa Grasa corporal
         MGC_Hombres = peso - MCM_Hombre
         MGC_Mujeres = peso - MCM_Mujer

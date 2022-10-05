@@ -68,6 +68,16 @@ Aunque estés en absoluto reposo, tu cuerpo sigue trabajando para llevar a cabo 
     </form>
     <div class="pt-2">
         {% if request.method == "POST" %} 
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-danger d-flex align-items-center" role="alert">
+                        <i class='bx bxs-error bx-md'></i>
+                        <div>
+                            Ingresaste un valor incorrecto. ¡Intente lo nuevamente!
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
             {% if sexo == "M"%}
                 <p>Mujer - Resultado</p>
                 <p>Tu TMB es: {{ TMBM |floatformat }} Kcal/diarias en REPOSO <br><strong>Ingesta diaria de calorías recomendada:</strong> <br>Agregando tu Rutina es: {{ actiM| floatformat }} Kcal/d <br> Para un Déficit Calórico necesitás: {{ adelM |floatformat }} Kcal/d <br> Para Etapa de Volumen: {{ aumenM}} Kcal/d</p>

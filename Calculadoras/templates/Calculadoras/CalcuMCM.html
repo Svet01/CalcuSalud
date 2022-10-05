@@ -37,12 +37,24 @@
         </div>
     </form>
     <div class="pt-3">
-        {% if sexo == "H" %}        
-        <h5>Hombre - Resultado:</h5>
-        <p>Tu Masa Corporal Magra es {{ MCM_H|floatformat }} Kg <br> Tu Masa Grasa Corporal es: {{ MGC_H|floatformat }} Kg</p> 
-        {% elif sexo == "M" %}
-        <h5>Mujer - Resultado:</h5>
-        <p>Tu Masa Corporal Magra es {{ MCM_M|floatformat }} Kg<br> Tu Masa Grasa Corporal es: {{ MGC_M|floatformat }} Kg</p>
+        {% if request.method == "POST" %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-danger d-flex align-items-center" role="alert">
+                        <i class='bx bxs-error bx-md'></i>
+                        <div>
+                            Ingresaste un valor incorrecto. ¡Intente lo nuevamente!
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+            {% if sexo == "H" %}        
+            <h5>Hombre - Resultado:</h5>
+            <p>Tu Masa Corporal Magra es {{ MCM_H|floatformat }} Kg <br> Tu Masa Grasa Corporal es: {{ MGC_H|floatformat }} Kg</p> 
+            {% elif sexo == "M" %}
+            <h5>Mujer - Resultado:</h5>
+            <p>Tu Masa Corporal Magra es {{ MCM_M|floatformat }} Kg<br> Tu Masa Grasa Corporal es: {{ MGC_M|floatformat }} Kg</p>
+            {% endif %}
         {% endif %}
     </div>
 {% endblock %}

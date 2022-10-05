@@ -32,25 +32,27 @@
         </div>
     </form>
     <div class="pt-2">
-        {% if IMC >= 40 %}
-            <h5 class="fw-bold mt-4 text-decoration-underline">Resultado:</h5>
-            <p>Tu IMC es: {{ IMC|floatformat }} <br>Tu Situación es: Obesidad Extrema | Revise la tabla para recomendaciones de su IMC</p>
-        {% elif IMC >= 39 %}
-            <h5 class="fw-bold mt-4 text-decoration-underline">Resultado:</h5>
-            <p>Tu IMC es: {{ IMC|floatformat }}  <br>Tu Situación es: Obesidad Tipo II | Revise la tabla para recomendaciones de su IMC</p>    
-        {% elif IMC >= 30 %}
-            <h5 class="fw-bold mt-4 text-decoration-underline">Resultado:</h5>
-            <p>Tu IMC es: {{ IMC|floatformat }}  <br>Tu Situación es: Obesidad | Revise la tabla para recomendaciones de su IMC</p>
-        {% elif IMC >= 25 %}
-            <h5 class="fw-bold mt-4 text-decoration-underline">Resultado:</h5>
-            <p>Tu IMC es: {{ IMC|floatformat }}  <br>Tu Situación es: Sobrepeso | Revise la tabla para recomendaciones de su IMC</p>
-        {% elif IMC >= 18 %}
-            <h5 class="fw-bold mt-4 text-decoration-underline">Resultado:</h5>
-            <p>Tu IMC es: {{ IMC|floatformat }}  <br>Tu Situación es: Peso Normal | Te encuentras saludable segun tu IMC</p>
-        {% elif IMC <= 18 %}
-            <h5 class="fw-bold mt-4 text-decoration-underline">Resultado:</h5>
-            <p>Tu IMC es: {{ IMC|floatformat }}  <br>Tu Situación es: Bajo Peso | Revise la tabla para recomendaciones de su IMC</p>
-        {% endif %}    
+        {% if request.method == "POST" %}
+            {% if IMC >= 40 %}
+                <h5 class="fw-bold mt-4 text-decoration-underline">Resultado:</h5>
+                <p>Tu IMC es: {{ IMC|floatformat }} <br>Tu Situación es: Obesidad Extrema | Revise la tabla para recomendaciones de su IMC</p>
+            {% elif IMC >= 39 %}
+                <h5 class="fw-bold mt-4 text-decoration-underline">Resultado:</h5>
+                <p>Tu IMC es: {{ IMC|floatformat }}  <br>Tu Situación es: Obesidad Tipo II | Revise la tabla para recomendaciones de su IMC</p>    
+            {% elif IMC >= 30 %}
+                <h5 class="fw-bold mt-4 text-decoration-underline">Resultado:</h5>
+                <p>Tu IMC es: {{ IMC|floatformat }}  <br>Tu Situación es: Obesidad | Revise la tabla para recomendaciones de su IMC</p>
+            {% elif IMC >= 25 %}
+                <h5 class="fw-bold mt-4 text-decoration-underline">Resultado:</h5>
+                <p>Tu IMC es: {{ IMC|floatformat }}  <br>Tu Situación es: Sobrepeso | Revise la tabla para recomendaciones de su IMC</p>
+            {% elif IMC >= 18 %}
+                <h5 class="fw-bold mt-4 text-decoration-underline">Resultado:</h5>
+                <p>Tu IMC es: {{ IMC|floatformat }}  <br>Tu Situación es: Peso Normal | Te encuentras saludable segun tu IMC</p>
+            {% elif IMC <= 18 %}
+                <h5 class="fw-bold mt-4 text-decoration-underline">Resultado:</h5>
+                <p>Tu IMC es: {{ IMC|floatformat }}  <br>Tu Situación es: Bajo Peso | Revise la tabla para recomendaciones de su IMC</p>
+            {% endif %}    
+        {% endif %}
     </div>
 {% endblock %}
 
