@@ -185,9 +185,7 @@ def CalcuPGCM(request):
         KgFaltantes = int(peso - PesoIdealMujer)
 
         # PGC = Porcentaje de Grasa Corporal
-        PGC_Mujer = 163.205 * \
-            math.log10(cintura + cadera - cuello) - \
-            97.684 * math.log10(altura) - 78.387
+        PGC_Mujer = 163.205 * math.log10(cintura + cadera - cuello) - 97.684 * math.log10(altura) - 78.387
 
 
         context = {"PGC_M": PGC_Mujer, "edad": edad, "PIdealM": PesoIdealMujer, "peso": peso, "KgF": KgFaltantes}
