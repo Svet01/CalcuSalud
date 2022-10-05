@@ -9,12 +9,16 @@ import math
 def CalcuTMB(request):
     if request.method == "POST":
         # Get Datos = Recibe los datos del Usuario
-        sexo = str(request.POST["sexo"]) if "sexo" in request.POST else "Mn"
-        edad = int(request.POST["edad"]) if "edad" in request.POST else 18
-        peso = int(request.POST["peso"]) if "peso" in request.POST else 70
-        altura = int(request.POST["altura"]) if "altura" in request.POST else 170
-        actividad = float(request.POST["actividad"]) if "actividad" in request.POST else 1.2
-        macros = int(request.POST["DivirMacros"]) if "DivirMacros" in request.POST else 1
+        try:
+            sexo = str(request.POST["sexo"]) if "sexo" in request.POST else "Mn"
+            edad = int(request.POST["edad"]) if "edad" in request.POST else 18
+            peso = int(request.POST["peso"]) if "peso" in request.POST else 70
+            altura = int(request.POST["altura"]) if "altura" in request.POST else 170
+            actividad = float(request.POST["actividad"]) if "actividad" in request.POST else 1.2
+            macros = int(request.POST["DivirMacros"]) if "DivirMacros" in request.POST else 1
+        except ValueError:
+            messages.error(request, 'Ingresaste un valor incorrecto. ¡Intente lo nuevamente!')
+            return render(request, "Calculadoras/CalcuPGCM.html")
 
 
         # TMB = Tasa Metabolica Basal
@@ -146,8 +150,12 @@ def CalcuTMB(request):
 def CalcuIMC(request):
     if request.method == "POST":
         # Get Datos = Recibe los datos del Usuario
-        peso = int(request.POST["peso"]) if "peso" in request.POST else 70
-        altura = int(request.POST["altura"]) if "altura" in request.POST else 170
+        try:
+            peso = int(request.POST["peso"]) if "peso" in request.POST else 70
+            altura = int(request.POST["altura"]) if "altura" in request.POST else 170
+        except ValueError:
+            messages.error(request, 'Ingresaste un valor incorrecto. ¡Intente lo nuevamente!')
+            return render(request, "Calculadoras/CalcuPGCM.html")
 
         # IMC = Indice de Masa Corporal
         def calIMC(altura, peso):
@@ -170,16 +178,20 @@ def CalcuIMC(request):
 def CalcuPGCM(request):
     if request.method == "POST":
         # Get Datos = Recibe los datos del Usuario
-        edad = int(request.POST["edad"]) if "edad" in request.POST else 18
-        peso = int(request.POST["peso"]) if "peso" in request.POST else 70
-        altura = int(request.POST["altura"]
-                     ) if "altura" in request.POST else 160
-        cuello = int(request.POST["cuello"]
-                     ) if 'cuello' in request.POST else 45
-        cintura = int(request.POST["cintura"]
-                      ) if "cintura" in request.POST else 120
-        cadera = int(request.POST["cadera"]
-                     ) if "cadera" in request.POST else 105
+        try:
+            edad = int(request.POST["edad"]) if "edad" in request.POST else 18
+            peso = int(request.POST["peso"]) if "peso" in request.POST else 70
+            altura = int(request.POST["altura"]
+                        ) if "altura" in request.POST else 160
+            cuello = int(request.POST["cuello"]
+                        ) if 'cuello' in request.POST else 45
+            cintura = int(request.POST["cintura"]
+                        ) if "cintura" in request.POST else 120
+            cadera = int(request.POST["cadera"]
+                        ) if "cadera" in request.POST else 105
+        except ValueError:
+            messages.error(request, 'Ingresaste un valor incorrecto. ¡Intente lo nuevamente!')
+            return render(request, "Calculadoras/CalcuPGCM.html")
 
         # PesoIdeal Mujer
         def PesoIdeal(altura, edad):
@@ -208,12 +220,15 @@ def CalcuPGCM(request):
 def CalCuPGCH(request):
     if request.method == "POST":
         # Get Datos = Recibe los datos del Usuario
-        edad = int(request.POST["edad"]) if "edad" in request.POST else 18
-        peso = int(request.POST["peso"]) if "peso" in request.POST else 70
-        altura = int(request.POST["altura"]) if "altura" in request.POST else 160
-        cuello = int(request.POST["cuello"]) if 'cuello' in request.POST else 45
-        cintura = int(request.POST["cintura"]) if "cintura" in request.POST else 120
-        AlertaError = True
+        try:
+            edad = int(request.POST["edad"]) if "edad" in request.POST else 18
+            peso = int(request.POST["peso"]) if "peso" in request.POST else 70
+            altura = int(request.POST["altura"]) if "altura" in request.POST else 160
+            cuello = int(request.POST["cuello"]) if 'cuello' in request.POST else 45
+            cintura = int(request.POST["cintura"]) if "cintura" in request.POST else 120
+        except ValueError:
+            messages.error(request, 'Ingresaste un valor incorrecto. ¡Intente lo nuevamente!')
+            return render(request, "Calculadoras/CalcuPGCM.html")
 
         # PesoIdeal Hombre
         def PesoIdeal(altura, edad):
@@ -241,10 +256,13 @@ def CalCuPGCH(request):
 def CalcuMCM(request):
     if request.method == "POST":
         # Get Datos = Recibe los datos del Usuario
-        sexo = str(request.POST["sexo"]) if "sexo" in request.POST else "M"
-        peso = int(request.POST["peso"]) if "peso" in request.POST else 70
-        altura = int(request.POST["altura"]) if "altura" in request.POST else 170
-
+        try:
+            sexo = str(request.POST["sexo"]) if "sexo" in request.POST else "M"
+            peso = int(request.POST["peso"]) if "peso" in request.POST else 70
+            altura = int(request.POST["altura"]) if "altura" in request.POST else 170
+        except ValueError:
+            messages.error(request, 'Ingresaste un valor incorrecto. ¡Intente lo nuevamente!')
+            return render(request, "Calculadoras/CalcuPGCM.html")
         # MCM = Masa Corporal Magra
         try:
             MCM_Hombre = (1.10 * peso) - (128 * (peso * peso) / (altura * altura))
