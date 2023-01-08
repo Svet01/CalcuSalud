@@ -2,6 +2,10 @@
 
 CalcuSalud es una página web que ofrece cuatro calculadoras de salud: tasa metabólica basal, porcentaje de grasa corporal, índice de masa corporal y masa corporal magra. Cada calculadora incluye una descripción y explicación de su utilidad.
 
+## Link Web
+
+- Web: https://calcusalud.up.railway.app/
+
 ## Características y funcionalidades
 
 - Tasa metabólica basal: Calcula la cantidad de calorías que necesita tu cuerpo para funcionar en reposo. Esta información es útil para planificar una dieta y hacer seguimiento de las calorías que consumes.
