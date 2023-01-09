@@ -1,15 +1,11 @@
 import os
 from pathlib import Path
-import environ
+from dotenv import load_dotenv
 
+load_dotenv()
 
-env = environ.Env(
-    DEBUG=(bool,False)
-)
-environ.Env.read_env()
-
-DEBUG = env('DEBUG')
-SECRET_KEY = env('SECRET_KEY')
+DEBUG = os.getenv('DEBUG')
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
