@@ -1,5 +1,7 @@
 # CalcuSalud
 
+<img src="https://media.discordapp.net/attachments/987833273617088532/1071912393032077352/Picsart_23-01-20_05-03-52-195.jpg">
+
 CalcuSalud es una página web que ofrece cuatro calculadoras de salud: tasa metabólica basal, porcentaje de grasa corporal, índice de masa corporal y masa corporal magra. Cada calculadora incluye una descripción y explicación de su utilidad.
 
 ## Link Web
